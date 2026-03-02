@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login.tsx';
 import Signup from './pages/Signup.tsx';
+import Dashboard from './pages/Dashboard.tsx';
 
 function App() {
   return (
@@ -13,8 +14,10 @@ function App() {
 
         {/* 3. The Signup Page */}
         <Route path="/signup" element={<Signup />} />
-        
+
         {/* 4. Future: Add your Grapher dashboard here */}
+        <Route path="/dashboard" element={<Dashboard />} />
+
         {/* <Route path="/dashboard" element={<Dashboard />} /> */}
       </Routes>
     </BrowserRouter>

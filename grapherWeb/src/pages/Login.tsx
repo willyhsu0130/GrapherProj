@@ -1,15 +1,24 @@
 import { useState } from 'react';
-import { login } from '../services/authService';
+import { login } from '../services/fetchers.ts';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const handleSubmit = async (e) => {
+    const [username, setUsername] = useState('');
+    const navigate = useNavigate();
+    const handleSubmit = async (e: React.SubmitEvent) => {
         e.preventDefault();
         try {
-            await login(email, password);
-            alert("Success! JWT stored.");
+            const data = {
+                username: username,
+                password: password
+            }
+            const res = await login(data);
+            console.log(res)
+            if (res.success) {
+                console.log(res)
+                navigate("/dashboard")
+            }
         } catch (error) {
             console.log(error)
             alert("Login failed.");
@@ -22,11 +31,11 @@ const Login = () => {
                 <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Login</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">Email</label>
+                        <label className="block text-sm font-medium text-gray-700">Email or Username</label>
                         <input
-                            type="email"
+                            type="username"
                             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => setUsername(e.target.value)}
                             required
                         />
                     </div>
