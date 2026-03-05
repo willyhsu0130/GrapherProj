@@ -1,10 +1,20 @@
 import { z } from "zod";
 
-const SERVER_API = import.meta.env.VITE_SERVER_API;
+// const SERVER_API = import.meta.env.VITE_SERVER_API;
+const SERVER_API = "";
+
 export interface ApiResponse<T> {
     success: boolean;
     message?: string;
     data?: T;
+}
+
+interface UserResponse {
+    username: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    token: string;
 }
 
 const LoginSchema = z.object({
@@ -29,7 +39,17 @@ const safeFetch = async <T>(
     options?: RequestInit
 ): Promise<ApiResponse<T>> => {
     try {
-        const res = await fetch(url, options);
+        const token = localStorage.getItem("token");
+        const headers = {
+            "Content-Type": "application/json",
+            ...options?.headers,
+            ...(token ? { "Authorization": `Bearer ${token}` } : {}),
+        };
+        const res = await fetch(url, { ...options, headers });
+        if (res.status === 401) {
+            localStorage.clear();
+            return Promise.reject("Unauthorized");
+        }
 
         // Network or HTTP failure
         if (!res.ok) {
@@ -67,7 +87,7 @@ export const signup = async (data: SignupRequest): Promise<ApiResponse<SignupReq
 };
 
 
-export const login = async (data: LoginRequest): Promise<ApiResponse<LoginRequest>> => {
+export const login = async (data: LoginRequest): Promise<ApiResponse<UserResponse>> => {
     try {
         const result = LoginSchema.safeParse(data);
 
@@ -76,11 +96,12 @@ export const login = async (data: LoginRequest): Promise<ApiResponse<LoginReques
             return { success: false, message: errorMsg };
         }
 
-        return safeFetch<LoginRequest>(`${SERVER_API}/api/users/login`, {
+        return safeFetch<UserResponse>(`${SERVER_API}/api/users/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(result.data)
         });
+
     } catch (err) {
         const message = err instanceof Error ? err.message : "An unexpected error occurred";
         return { success: false, message };

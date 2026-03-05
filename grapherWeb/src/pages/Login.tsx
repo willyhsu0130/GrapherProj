@@ -1,24 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { login } from '../services/fetchers.ts';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth.ts';
 
 const Login = () => {
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
+    const { token, loginToken } = useAuth()
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (token) navigate("/graphs");
+    }, [token, navigate])
+
+
     const handleSubmit = async (e: React.SubmitEvent) => {
         e.preventDefault();
         try {
-            const data = {
-                username: username,
-                password: password
-            }
-            const res = await login(data);
-            console.log(res)
+            const res = await login({ username, password });
+
             if (res.success) {
                 console.log(res)
-                navigate("/dashboard")
+                const tokenUsername = res?.data?.username
+                const token = res?.data?.token
+
+                if (token && tokenUsername) loginToken(token, tokenUsername);
+                navigate("/graphs")
             }
+            console.log(res)
+
         } catch (error) {
             console.log(error)
             alert("Login failed.");
@@ -26,14 +36,14 @@ const Login = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="min-h-screen flex items-center justify-center bg-black">
             <div className="bg-white p-8 rounded-lg shadow-md w-96">
                 <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Login</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Email or Username</label>
                         <input
-                            type="username"
+                            type="text"
                             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                             onChange={(e) => setUsername(e.target.value)}
                             required

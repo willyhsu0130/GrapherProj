@@ -20,13 +20,13 @@ const Signup = () => {
     }
     const res = await signup(data);
     if (res.success) {
-      navigate("/dashboard")
+      navigate("/graphs")
     }
     else alert("Signup failed.");
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="h-screen flex items-center justify-center bg-black">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
         <h2 className="text-3xl font-extrabold mb-6 text-center text-indigo-900">Create Account</h2>
         <form onSubmit={handleSignup} className="flex flex-col gap-4">
@@ -67,8 +67,7 @@ const Signup = () => {
             placeholder="Confirm Password"
             className="p-3 bg-gray-100 border-none rounded-lg focus:ring-2 focus:ring-indigo-400 outline-none"
           />
-      
-          
+
           <button className="bg-indigo-500 text-white font-bold py-3 rounded-lg hover:bg-indigo-600 shadow-lg transform transition hover:-translate-y-1">
             Get Started
           </button>
