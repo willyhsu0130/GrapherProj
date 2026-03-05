@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.grapher.models.LoginRequest;
 import com.example.grapher.models.SignupRequest;
@@ -34,8 +35,9 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<UserResponse> createUser(@RequestBody SignupRequest request) {
+    public ResponseEntity<?> createUser(@RequestBody SignupRequest request) {
         try {
+
             User created = userService.createNewUser(request);
             UserResponse response = UserResponse.builder()
                     .username(created.getUsername())
@@ -45,13 +47,17 @@ public class UserController {
                     .token(jwtService.generateToken(created))
                     .build();
             return ResponseEntity.ok(response);
-        } catch (Exception e) {
+        } catch (ResponseStatusException e) {
+            return ResponseEntity.status(e.getStatusCode()).body(e.getReason());
+        }
+
+        catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserResponse> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         try {
             User user = userService.login(request);
             UserResponse response = UserResponse.builder()
@@ -62,7 +68,10 @@ public class UserController {
                     .token(jwtService.generateToken(user))
                     .build();
             return ResponseEntity.ok(response);
-        } catch (Exception e) {
+        } catch (ResponseStatusException e) {
+            return ResponseEntity.status(e.getStatusCode()).body(e.getReason());
+        }
+        catch (Exception e) {
             System.out.println(e);
             return ResponseEntity.badRequest().build();
         }

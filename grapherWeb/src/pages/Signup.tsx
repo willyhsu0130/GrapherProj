@@ -22,7 +22,7 @@ const Signup = () => {
     if (res.success) {
       navigate("/graphs")
     }
-    else alert("Signup failed.");
+    else alert(res.message);
   };
 
   return (

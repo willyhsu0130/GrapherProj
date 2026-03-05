@@ -53,9 +53,10 @@ const safeFetch = async <T>(
 
         // Network or HTTP failure
         if (!res.ok) {
+            const errorText = await res.text();
             return {
                 success: false,
-                message: `Request failed: ${res.status}`
+                message: errorText || "Request Failed"
             };
         }
         const data = await res.json() as T;
