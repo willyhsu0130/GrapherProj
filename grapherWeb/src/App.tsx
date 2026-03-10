@@ -5,8 +5,10 @@ import Graphs from "./pages/Graphs.tsx"
 import Login from './pages/Login.tsx';
 import Signup from './pages/Signup.tsx';
 import Index from './pages/Index.tsx';
-import MainLayout from './layouts/mainLayout.tsx';
+import MainLayout from './layouts/MainLayout.tsx';
 import User from './pages/User.tsx';
+import Graph from './pages/Graph.tsx';
+import { DataProvider } from './context/graph/DataProvider.tsx';
 
 const App = () => {
   return (
@@ -19,8 +21,9 @@ const App = () => {
         </Routes>
         <Routes>
           <Route element={<MainLayout />}>
-            <Route path="/user" element ={<ProtectedRoutes><User/></ProtectedRoutes>}/>
+            <Route path="/user" element={<ProtectedRoutes><User /></ProtectedRoutes>} />
             <Route path="/graphs" element={<ProtectedRoutes><Graphs /></ProtectedRoutes>} />
+            <Route path="/graphs/:graphId" element={<DataProvider><Graph /></DataProvider>} />
           </Route>
         </Routes>
       </BrowserRouter>

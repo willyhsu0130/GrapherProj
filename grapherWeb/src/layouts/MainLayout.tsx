@@ -3,12 +3,15 @@ import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
     return (
-        <>
-            <Navbar />
-            <div>
-                <Outlet />
+        <div className="flex flex-col h-screen">
+            <div className="h-[10%]">
+                <Navbar />
             </div>
-        </>
+
+            <div className="flex-1">
+                <Outlet/>
+            </div>
+        </div>
     )
 
 }

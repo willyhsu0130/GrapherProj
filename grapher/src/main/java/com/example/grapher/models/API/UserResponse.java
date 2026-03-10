@@ -1,4 +1,4 @@
-package com.example.grapher.models;
+package com.example.grapher.models.API;
 
 import lombok.Builder;
 import lombok.Data;

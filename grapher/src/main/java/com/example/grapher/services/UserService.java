@@ -8,9 +8,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.example.grapher.models.LoginRequest;
-import com.example.grapher.models.SignupRequest;
 import com.example.grapher.models.User;
+import com.example.grapher.models.API.LoginRequest;
+import com.example.grapher.models.API.SignupRequest;
 import com.example.grapher.repositories.UserRepository;
 
 @Service

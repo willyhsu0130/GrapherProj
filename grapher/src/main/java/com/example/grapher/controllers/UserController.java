@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.example.grapher.models.LoginRequest;
-import com.example.grapher.models.SignupRequest;
+import com.example.grapher.models.API.LoginRequest;
+import com.example.grapher.models.API.SignupRequest;
+import com.example.grapher.models.API.UserResponse;
 import com.example.grapher.models.User;
-import com.example.grapher.models.UserResponse;
 import com.example.grapher.services.JwtService;
 import com.example.grapher.services.UserService;
 

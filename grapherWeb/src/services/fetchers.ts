@@ -1,4 +1,6 @@
 import { z } from "zod";
+import type { DoubleArray } from "../models/data/Data.ts";
+import type { Graph } from "../models/Graph.ts";
 
 // const SERVER_API = import.meta.env.VITE_SERVER_API;
 const SERVER_API = "";
@@ -17,6 +19,10 @@ interface UserResponse {
     token: string;
 }
 
+interface GraphResponse {
+    id: number
+    data: DoubleArray<number | string>
+}
 const LoginSchema = z.object({
     username: z.string().min(1, "Required"),
     password: z.string().min(6, "Too short"),
@@ -30,8 +36,17 @@ export const SignupSchema = z.object({
     lastName: z.string().min(1, "Last name is required"),
 });
 
+export const FetchGraphSchema = z.object({
+    graphId: z.int()
+})
+
+export const FetchAllGraphsSchema = z.object({
+    token: z.jwt()
+})
+
 type LoginRequest = z.infer<typeof LoginSchema>;
 type SignupRequest = z.infer<typeof SignupSchema>;
+type FetchGraphRequest = z.infer<typeof FetchGraphSchema>;
 
 
 const safeFetch = async <T>(
@@ -68,7 +83,7 @@ const safeFetch = async <T>(
     }
 };
 
-export const signup = async (data: SignupRequest): Promise<ApiResponse<SignupRequest>> => {
+export const signup = async (data: SignupRequest): Promise<ApiResponse<UserResponse>> => {
     try {
         const result = SignupSchema.safeParse(data);
 
@@ -76,7 +91,7 @@ export const signup = async (data: SignupRequest): Promise<ApiResponse<SignupReq
             const errorMsg = result.error.issues[0].message;
             return { success: false, message: errorMsg };
         }
-        return await safeFetch<SignupRequest>(`${SERVER_API}/api/users/signup`, {
+        return await safeFetch<UserResponse>(`${SERVER_API}/api/users/signup`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(result.data)
@@ -108,3 +123,43 @@ export const login = async (data: LoginRequest): Promise<ApiResponse<UserRespons
         return { success: false, message };
     }
 };
+
+export const fetchAllGraphs = async (): Promise<ApiResponse<Graph[]>> => {
+    try {
+        return safeFetch<Graph[]>(`${SERVER_API}/api/graph/`, {
+            method: "GET",
+        })
+
+    } catch (err) {
+        const message = err instanceof Error ? err.message : "An unexpected error occured";
+        return { success: false, message }
+    }
+}
+
+export const createGraph = async (): Promise<ApiResponse<GraphResponse>> => {
+    try {
+
+        return safeFetch<GraphResponse>(`${SERVER_API}/api/graph/create`, {
+            method: "POST",
+        })
+
+    } catch (err) {
+        const message = err instanceof Error ? err.message : "An unexpected error occured";
+        return { success: false, message }
+
+    }
+}
+
+export const fetchGraphById = async (data: FetchGraphRequest): Promise<ApiResponse<Graph>> => {
+    try {
+        const result = FetchGraphSchema.parse(data);
+        const graphId = result.graphId;
+        return safeFetch<Graph>(`${SERVER_API}/api/graph/${graphId}`, {
+            method: "GET",
+        })
+    } catch (err) {
+        const message = err instanceof Error ? err.message : "An unexpected error occured";
+        return { success: false, message }
+    }
+
+}

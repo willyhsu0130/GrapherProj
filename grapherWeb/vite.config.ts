@@ -11,9 +11,7 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:8080',
         changeOrigin: true,
-        secure: false, // Use false if your local Spring setup isn't using HTTPS
-        // rewrite: (path) => path.replace(/^\/api/, '') 
-        // ^ Only use 'rewrite' if your Spring controllers DON'T start with /api
+        secure: false, 
       },
     },
   },

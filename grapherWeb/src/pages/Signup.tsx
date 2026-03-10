@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { signup } from '../services/fetchers.ts';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth.ts';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ const Signup = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
+  const { loginToken } = useAuth();
   const handleSignup = async (e: React.SubmitEvent) => {
     e.preventDefault();
     const data = {
@@ -20,6 +22,9 @@ const Signup = () => {
     }
     const res = await signup(data);
     if (res.success) {
+      const token = res?.data?.token
+      const tokenUsername = res?.data?.username;
+      if (token && tokenUsername) loginToken(token, tokenUsername);
       navigate("/graphs")
     }
     else alert(res.message);
