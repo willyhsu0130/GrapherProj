@@ -10,4 +10,6 @@ import com.example.grapher.models.graph.Graph;
 @Repository
 public interface GraphRepository extends JpaRepository<Graph, Long> {
     List<Graph> findByUser_Id(Long userId);
+
+    Long countByUser_IdAndTitleStartingWith(Long userId, String title);
 }

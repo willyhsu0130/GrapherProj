@@ -8,7 +8,7 @@ import Index from './pages/Index.tsx';
 import MainLayout from './layouts/MainLayout.tsx';
 import User from './pages/User.tsx';
 import Graph from './pages/Graph.tsx';
-import { DataProvider } from './context/graph/DataProvider.tsx';
+import { GraphProvider } from './context/graph/GraphProvider.tsx';
 
 const App = () => {
   return (
@@ -18,12 +18,12 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<Index />} />
+          <Route path="/graphs/:graphId" element={<GraphProvider><Graph /></GraphProvider>} />
         </Routes>
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/user" element={<ProtectedRoutes><User /></ProtectedRoutes>} />
             <Route path="/graphs" element={<ProtectedRoutes><Graphs /></ProtectedRoutes>} />
-            <Route path="/graphs/:graphId" element={<DataProvider><Graph /></DataProvider>} />
           </Route>
         </Routes>
       </BrowserRouter>

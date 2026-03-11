@@ -1,6 +1,7 @@
 import { z } from "zod";
-import type { DoubleArray } from "../models/data/Data.ts";
-import type { Graph } from "../models/Graph.ts";
+import type { DoubleArray } from "../models/graph/GraphContextType.ts";
+import type { Graph } from "../models/graph/Graph.ts";
+import type { PatchGraphRequest, LoginRequest, SignupRequest, FetchGraphRequest } from "../models/API/APITypes.ts";
 
 // const SERVER_API = import.meta.env.VITE_SERVER_API;
 const SERVER_API = "";
@@ -37,16 +38,20 @@ export const SignupSchema = z.object({
 });
 
 export const FetchGraphSchema = z.object({
-    graphId: z.int()
+    id: z.int()
 })
 
 export const FetchAllGraphsSchema = z.object({
     token: z.jwt()
 })
 
-type LoginRequest = z.infer<typeof LoginSchema>;
-type SignupRequest = z.infer<typeof SignupSchema>;
-type FetchGraphRequest = z.infer<typeof FetchGraphSchema>;
+export const PatchGraphSchema = z.object({
+    id: z.int(),
+    title: z.string().optional(),
+    xAxis: z.string().optional(),
+    yAxis: z.string().optional()
+})
+
 
 
 const safeFetch = async <T>(
@@ -93,7 +98,6 @@ export const signup = async (data: SignupRequest): Promise<ApiResponse<UserRespo
         }
         return await safeFetch<UserResponse>(`${SERVER_API}/api/users/signup`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(result.data)
         });
     } catch (err) {
@@ -153,12 +157,31 @@ export const createGraph = async (): Promise<ApiResponse<GraphResponse>> => {
 export const fetchGraphById = async (data: FetchGraphRequest): Promise<ApiResponse<Graph>> => {
     try {
         const result = FetchGraphSchema.parse(data);
-        const graphId = result.graphId;
+        const graphId = result.id;
+        return safeFetch<Graph>(`${SERVER_API}/api/graph/${graphId}`)
+    } catch (err) {
+        const message = err instanceof Error ? err.message : "An unexpected error occured when fetching graph by id.";
+        return { success: false, message }
+    }
+
+}
+
+export const patchGraphById = async (data: PatchGraphRequest): Promise<ApiResponse<Graph>> => {
+    try {
+        const result = PatchGraphSchema.safeParse(data);
+
+        if (!result.success) {
+            const errorMsg = result.error.issues[0].message;
+            return { success: false, message: errorMsg };
+        }
+        const graphId = result.data.id;
+
         return safeFetch<Graph>(`${SERVER_API}/api/graph/${graphId}`, {
-            method: "GET",
+            method: "PATCH",
+            body: JSON.stringify(data)
         })
     } catch (err) {
-        const message = err instanceof Error ? err.message : "An unexpected error occured";
+        const message = err instanceof Error ? err.message : "An unexpected error occured when saving your graph.";
         return { success: false, message }
     }
 

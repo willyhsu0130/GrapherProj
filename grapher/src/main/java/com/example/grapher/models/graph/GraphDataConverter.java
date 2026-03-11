@@ -1,23 +1,28 @@
 package com.example.grapher.models.graph;
 
+import java.util.List;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.fasterxml.jackson.core.type.TypeReference;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter
-public class GraphDataConverter implements AttributeConverter<GraphData, String> {
+public class GraphDataConverter implements AttributeConverter<List<List<Object>>, String> {
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Override
-    public String convertToDatabaseColumn(GraphData data) {
+    public String convertToDatabaseColumn(List<List<Object>> data) {
         try { return mapper.writeValueAsString(data); }
-        catch (Exception e) { throw new RuntimeException(e); }
+        catch (JsonProcessingException e) { throw new RuntimeException(e); }
     }
 
     @Override
-    public GraphData convertToEntityAttribute(String json) {
-        try { return mapper.readValue(json, GraphData.class); }
-        catch (Exception e) { throw new RuntimeException(e); }
+    public List<List<Object>> convertToEntityAttribute(String json) {
+        try { return mapper.readValue(json, new TypeReference<List<List<Object>>>() {}); }
+        catch (JsonProcessingException e) { throw new RuntimeException(e); }
     }
 }

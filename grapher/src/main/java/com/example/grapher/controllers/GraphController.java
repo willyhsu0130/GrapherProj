@@ -6,14 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.example.grapher.models.API.GraphResponse;
+import com.example.grapher.models.API.PatchGraphRequest;
 import com.example.grapher.models.graph.Graph;
 import com.example.grapher.services.GraphService;
+
 
 @RestController
 @RequestMapping("/api/graph")
@@ -26,8 +31,13 @@ public class GraphController {
     }
 
     @GetMapping("/{id}")
-    public Graph getGraph(@PathVariable Long id) {
+    public GraphResponse getGraph(@PathVariable Long id) {
         return graphService.getGraphById(id);
+    }
+    @PatchMapping("/{id}")
+    public GraphResponse patchGraph(@PathVariable Long id, @RequestBody PatchGraphRequest request){
+        System.out.println("Received graph request" + request);
+        return graphService.patchGraphById(id, request);
     }
 
     @GetMapping("/")

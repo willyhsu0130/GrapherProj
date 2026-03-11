@@ -1,44 +1,71 @@
 import { Grid } from '../components/graph/Grid.tsx';
 import { Sheet } from "../components/graph/Sheet.tsx"
+import { Settings } from "../components/graph/Settings.tsx"
 import { Group, Panel, Separator } from "react-resizable-panels";
-import { useEffect, useState } from 'react';
-import { fetchGraphById } from '../services/fetchers.ts';
-import { useParams } from 'react-router-dom';
+import { useGraph } from '../hooks/useGraph.ts';
+import { Home } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Graph = () => {
-    const [title, setTitle] = useState<string>();
-    const { graphId } = useParams();
+    const { updateGraph, graph } = useGraph()
 
-    useEffect(() => {
-        const fetcher = async () => {
-            if (!graphId) return
- 
-            const res = await fetchGraphById({graphId: parseInt(graphId)})
-            if(!res.success || !res.data) return
-            const data = res.data;
-            setTitle(data.title)
-            console.log(res)
-        }
-        fetcher()
-    }, [graphId])
+    const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        updateGraph({ title: e.target.value })
+    }
 
     return (
-        <div>
-            <p>{title}</p>
-            <Group className="w-full h-full flex">
-                <Panel defaultSize="50%" className="w-1/2">
-                    <Sheet />
+        <div className="h-screen flex flex-col">
+            <div className="h-[8%] flex items-center gap-x-3 p-2">
+                <Link to="/graphs"><Home size={40} /></Link>
+                <div className="flex flex-col w-full justify-start">
+                    <input value={graph?.title} onChange={handleTitleChange}
+                        className='text-xl'
+                        style={{ width: `${(graph?.title?.length || 10) + 2}ch` }} />
+                    <ActionsBar />
+                </div>
+
+            </div>
+            <Group>
+                <Panel defaultSize="30%">
+                    <Settings />
                 </Panel>
                 <Separator />
-                <Panel className="w-1/2">
-                    <Grid />
+
+                <Panel>
+                    <Group className="w-full h-[92%]" orientation='vertical'>
+                        <Panel defaultSize="50%">
+                            <Sheet />
+                        </Panel>
+                        <Separator />
+                        <Panel className="">
+                            <Grid />
+                        </Panel>
+                    </Group>
                 </Panel>
+
+
+
             </Group>
+
         </div>
 
 
     )
 
 }
+const ActionsBar = () => {
+    return (
+        <div className="flex gap-x-3">
+            <button className="text-sm">File</button>
+            <button className="text-sm">Edit</button>
+            <button className="text-sm">View</button>
+            <button className="text-sm">Insert</button>
+            <button className="text-sm">Format</button>
+            <button className="text-sm">Tools</button>
+        </div>
+    )
+}
+
+
 
 export default Graph; 

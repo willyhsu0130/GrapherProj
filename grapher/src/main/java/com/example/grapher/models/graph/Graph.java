@@ -1,5 +1,7 @@
 package com.example.grapher.models.graph;
 
+import java.util.List;
+
 import com.example.grapher.models.User;
 
 import jakarta.persistence.Column;
@@ -44,6 +46,6 @@ public class Graph {
 
     @Column(columnDefinition = "TEXT")
     @Convert(converter = GraphDataConverter.class)
-    private GraphData data;
+    private  List<List<Object>> data;
 }
 

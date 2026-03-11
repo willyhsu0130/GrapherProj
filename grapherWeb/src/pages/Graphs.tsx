@@ -4,7 +4,7 @@ import { createGraph, fetchAllGraphs } from "../services/fetchers";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import type { Graph } from "../models/Graph";
+import type { Graph } from "../models/graph/Graph";
 
 
 const Dashboard = () => {
