@@ -6,6 +6,7 @@ import { useGraph } from '../hooks/useGraph.ts';
 import { Home } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+
 const Graph = () => {
     const { updateGraph, graph } = useGraph()
 
@@ -42,8 +43,6 @@ const Graph = () => {
                         </Panel>
                     </Group>
                 </Panel>
-
-
 
             </Group>
 

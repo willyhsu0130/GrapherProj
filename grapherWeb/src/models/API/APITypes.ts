@@ -37,11 +37,17 @@ export const FetchAllGraphsSchema = z.object({
 })
 
 export const PatchGraphSchema = z.object({
-    id: z.int(),
-    title: z.string().optional(),
-    xAxis: z.string().optional(),
-    yAxis: z.string().optional(),
-    data: z.array(z.array(z.union([z.string(), z.number(), z.null()]))).optional()
+    id: z.number().int(),
+    title: z.string().nullish(),
+    xAxis: z.object({
+        title: z.string().nullish(),
+        col: z.string().nullish()
+    }).nullish(),
+    yAxis: z.object({
+        title: z.string().nullish(),
+        col: z.string().nullish()
+    }).nullish(),
+    data: z.array(z.array(z.union([z.string(), z.number(), z.null()]))).nullish()
 })
 
 export type PatchGraphRequest = z.infer<typeof PatchGraphSchema>;

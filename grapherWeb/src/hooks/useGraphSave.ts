@@ -9,7 +9,8 @@ export const useGraphSave = (id: string) => {
        debounce(async (changes: Omit<PatchGraphRequest, 'id'>) => {
             const res = await patchGraphById({ ...changes, id: parseInt(id) })
             if(!res.success){
-                alert("Error saving graph")
+                console.log(res.message)
+                alert(res.message)
             }
         }, 500)
         , [id])

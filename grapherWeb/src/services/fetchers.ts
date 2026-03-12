@@ -1,7 +1,7 @@
-import { z } from "zod";
 import type { DoubleArray } from "../models/graph/GraphContextType.ts";
 import type { Graph } from "../models/graph/Graph.ts";
-import type { PatchGraphRequest, LoginRequest, SignupRequest, FetchGraphRequest } from "../models/API/APITypes.ts";
+import type { PatchGraphRequest, LoginRequest, SignupRequest, FetchGraphRequest, } from "../models/API/APITypes.ts";
+import { PatchGraphSchema, SignupSchema, FetchGraphSchema, LoginSchema} from "../models/API/APITypes.ts";
 
 // const SERVER_API = import.meta.env.VITE_SERVER_API;
 const SERVER_API = "";
@@ -24,34 +24,6 @@ interface GraphResponse {
     id: number
     data: DoubleArray<number | string>
 }
-const LoginSchema = z.object({
-    username: z.string().min(1, "Required"),
-    password: z.string().min(6, "Too short"),
-})
-
-export const SignupSchema = z.object({
-    username: z.string().min(3, "Username must be 3+ chars"),
-    email: z.email("Invalid email format"),
-    password: z.string().min(8, "Password must be 8+ chars"),
-    firstName: z.string().min(1, "First name is required"),
-    lastName: z.string().min(1, "Last name is required"),
-});
-
-export const FetchGraphSchema = z.object({
-    id: z.int()
-})
-
-export const FetchAllGraphsSchema = z.object({
-    token: z.jwt()
-})
-
-export const PatchGraphSchema = z.object({
-    id: z.int(),
-    title: z.string().optional(),
-    xAxis: z.string().optional(),
-    yAxis: z.string().optional()
-})
-
 
 
 const safeFetch = async <T>(
@@ -171,7 +143,7 @@ export const patchGraphById = async (data: PatchGraphRequest): Promise<ApiRespon
         const result = PatchGraphSchema.safeParse(data);
 
         if (!result.success) {
-            const errorMsg = result.error.issues[0].message;
+            const errorMsg = result.error.issues[0].message
             return { success: false, message: errorMsg };
         }
         const graphId = result.data.id;

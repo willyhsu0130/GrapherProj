@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Generates a constructor with no arguments
 @AllArgsConstructor // Generates a constructor with all fields
 public class GridAxis {
-    private int width;
+    private Integer width;
     private String color;
     private String title;
+    private String col;
 }

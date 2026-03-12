@@ -1,37 +1,69 @@
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import type { TooltipIndex } from 'recharts';
-import { RechartsDevtools } from '@recharts/devtools';
+import { useGraph } from '@/hooks/useGraph';
+import { useMemo, useState } from 'react';
 
-// #region Sample data
-const data = [
-    { x: 100, y: 200 },
-    { x: 120, y: 100 },
-    { x: 170, y: 300 },
-    { x: 140, y: 250 },
-    { x: 150, y: 400 },
-    { x: 110, y: 280 },
-];
+type GridData = {
+    x?: number | string
+    y?: number | string
+}
 
-// #endregion
 export const Grid = ({ defaultIndex }: { defaultIndex?: TooltipIndex }) => {
+    const { graph } = useGraph();
+    const [xTitle, setXTitle] = useState("")
+    const [yTitle, setYTitle] = useState("")
+    const gridData = useMemo((): GridData[] => {
+        const data = graph?.data
+        const xCol = graph?.xAxis?.col
+        const yCol = graph?.yAxis?.col
+
+        if (!data) {
+            console.log("early return — missing:", { data: !!data, xCol: !!xCol, yCol: !!yCol })
+            return []
+        }
+
+        // Grab first row of the double array.
+        const [headers, ...rows] = data
+
+        // Convert xCol and yCol to numbers.
+
+        const xColNum = xCol ? xCol.charCodeAt(0) - 65 : undefined
+
+        const yColNum = yCol ? yCol.charCodeAt(0) - 65 : undefined
+
+
+        // if (xCol) {
+        //     setXTitle((headers as string[]).indexOf(xCol))
+        // }
+        // if (yCol) {
+        //     setYTitle((headers as string[]).indexOf(yCol))
+        // }
+
+        console.log("xColNum: " + xColNum)
+        console.log("yColNum: " + yColNum)
+        console.log("rows: " + rows)
+
+        rows.map(row => (
+            console.log(xColNum ? row[xColNum] : undefined)
+        ))
+
+        return rows.map(row => ({
+            x: Number(xColNum !== undefined ? row[xColNum] : undefined),
+            y: Number(yColNum !== undefined ? row[yColNum] : undefined)
+        }))
+    }, [graph])
+
+    console.log(gridData)
     return (
         <ScatterChart
-            className="h-full"
-            style={{ width: '100%' }}
-            responsive
-            margin={{
-                top: 20,
-                right: 0,
-                bottom: 0,
-                left: 0,
-            }}
+            style={{ width: '100%', height: '100%' }}
+            margin={{ top: 20, right: 0, bottom: 0, left: 0 }}
         >
             <CartesianGrid />
-            <XAxis type="number" dataKey="x" name="stature" unit="cm" />
-            <YAxis type="number" dataKey="y" name="weight" unit="kg" width="auto" />
+            <XAxis type="number" dataKey="x" />
+            <YAxis type="number" dataKey="y" width={50} />
             <Tooltip cursor={{ strokeDasharray: '3 3' }} defaultIndex={defaultIndex} />
-            <Scatter activeShape={{ fill: 'red' }} name="A school" data={data} fill="#8884d8" />
-            <RechartsDevtools />
+            <Scatter data={gridData} fill="#8884d8" />
         </ScatterChart>
     );
 };

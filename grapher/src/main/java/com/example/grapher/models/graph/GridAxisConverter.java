@@ -1,6 +1,8 @@
 package com.example.grapher.models.graph;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
@@ -10,13 +12,22 @@ public class GridAxisConverter implements AttributeConverter<GridAxis, String> {
 
     @Override
     public String convertToDatabaseColumn(GridAxis axis) {
-        try { return mapper.writeValueAsString(axis); }
-        catch (Exception e) { throw new RuntimeException(e); }
+        try {
+            return mapper.writeValueAsString(axis);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to serialize GridAxis: " + axis, e);
+        }
     }
 
     @Override
     public GridAxis convertToEntityAttribute(String json) {
-        try { return mapper.readValue(json, GridAxis.class); }
-        catch (Exception e) { throw new RuntimeException(e); }
+        if ("null".equals(json))
+            return null;
+        System.out.println(json);
+        try {
+            return mapper.readValue(json, GridAxis.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to deserialize GridAxis from: " + json, e);
+        }
     }
 }

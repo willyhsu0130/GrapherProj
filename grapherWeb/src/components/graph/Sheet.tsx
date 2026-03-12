@@ -63,8 +63,8 @@ export const Sheet = () => {
         const data = graph?.data;
         if (!data) return
         updateGraph({ data: data.slice(0, -1) })
-
     }
+    
     const handleAddColumn = () => {
         const data = graph?.data
         if (!data) return
@@ -74,13 +74,11 @@ export const Sheet = () => {
     }
 
     const handleRemoveColumn = () => {
-
         const data = graph?.data
         if (!data) return
         updateGraph({
             data: data.map(row => row.slice(0, -1))
         })
-
     }
     return (
         <div className="w-full h-full border border-black flex flex-col">
