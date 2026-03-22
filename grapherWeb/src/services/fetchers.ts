@@ -128,8 +128,12 @@ export const createGraph = async (): Promise<ApiResponse<GraphResponse>> => {
 
 export const fetchGraphById = async (data: FetchGraphRequest): Promise<ApiResponse<Graph>> => {
     try {
-        const result = FetchGraphSchema.parse(data);
-        const graphId = result.id;
+        const result = FetchGraphSchema.safeParse(data);
+        if(!result.success){
+            const errorMsg = result.error.issues[0].message;
+            return { success: false, message: errorMsg };
+        }
+        const graphId = result.data.id;
         return safeFetch<Graph>(`${SERVER_API}/api/graph/${graphId}`)
     } catch (err) {
         const message = err instanceof Error ? err.message : "An unexpected error occured when fetching graph by id.";

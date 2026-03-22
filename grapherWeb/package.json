@@ -17,6 +17,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "handsontable": "^16.2.0",
+    "html-to-image": "^1.11.13",
+    "html2canvas": "^1.4.1",
     "lodash": "^4.17.23",
     "lucide-react": "^0.577.0",
     "react": "^19.2.0",

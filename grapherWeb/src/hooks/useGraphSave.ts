@@ -4,11 +4,14 @@ import type { PatchGraphRequest } from "../models/API/APITypes"
 import { patchGraphById } from "../services/fetchers"
 
 
+
 export const useGraphSave = (id: string) => {
+
+
     const debouncedSave = useMemo(() =>
-       debounce(async (changes: Omit<PatchGraphRequest, 'id'>) => {
+        debounce(async (changes: Omit<PatchGraphRequest, 'id'>) => {
             const res = await patchGraphById({ ...changes, id: parseInt(id) })
-            if(!res.success){
+            if (!res.success) {
                 console.log(res.message)
                 alert(res.message)
             }

@@ -2,6 +2,7 @@ package com.example.grapher.models.API;
 
 import java.util.List;
 
+import com.example.grapher.models.graph.Series;
 import com.example.grapher.models.graph.GridAxis;
 
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class GraphResponse {
     private Long id;
     private String title;
-    private GridAxis xAxis;
-    private GridAxis yAxis;
     private List<List<Object>> data;
+    private String snapshot;
+    private List<Series> series;
 }

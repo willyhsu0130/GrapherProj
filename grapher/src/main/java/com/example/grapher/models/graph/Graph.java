@@ -3,6 +3,9 @@ package com.example.grapher.models.graph;
 import java.util.List;
 
 import com.example.grapher.models.User;
+import com.example.grapher.models.graph.converters.GraphDataConverter;
+import com.example.grapher.models.graph.converters.GridAxisConverter;
+import com.example.grapher.models.graph.converters.SeriesListConverter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -37,6 +40,10 @@ public class Graph {
     private User user;
 
     @Column(columnDefinition = "TEXT")
+    @Convert(converter = SeriesListConverter.class)
+    private List<Series> series;
+
+    @Column(columnDefinition = "TEXT")
     @Convert(converter = GridAxisConverter.class)
     private GridAxis xAxis;
 
@@ -46,6 +53,8 @@ public class Graph {
 
     @Column(columnDefinition = "TEXT")
     @Convert(converter = GraphDataConverter.class)
-    private  List<List<Object>> data;
-}
+    private List<List<Object>> data;
 
+    @Column(columnDefinition = "TEXT")
+    private String snapshot;
+}

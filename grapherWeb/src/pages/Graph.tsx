@@ -28,6 +28,7 @@ const Graph = () => {
             </div>
             <Group>
                 <Panel defaultSize="30%">
+                    
                     <Settings />
                 </Panel>
                 <Separator />

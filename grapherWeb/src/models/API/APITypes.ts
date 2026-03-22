@@ -47,7 +47,8 @@ export const PatchGraphSchema = z.object({
         title: z.string().nullish(),
         col: z.string().nullish()
     }).nullish(),
-    data: z.array(z.array(z.union([z.string(), z.number(), z.null()]))).nullish()
+    data: z.array(z.array(z.union([z.string(), z.number(), z.null()]))).nullish(),
+    snapshot: z.string().nullish()
 })
 
 export type PatchGraphRequest = z.infer<typeof PatchGraphSchema>;

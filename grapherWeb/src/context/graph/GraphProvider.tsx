@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import type { GraphChanges } from "../../models/graph/GraphChanges.ts";
 import type { Graph } from "../../models/graph/Graph.ts";
 import { fetchGraphById } from "../../services/fetchers.ts";
-import { merge } from "lodash";
+import { mergeWith } from "lodash";
 
 export const GraphProvider = ({ children }: { children: ReactNode }) => {
 
@@ -20,11 +20,9 @@ export const GraphProvider = ({ children }: { children: ReactNode }) => {
         const fetcher = async () => {
             if (!graphId) return
             const res = await fetchGraphById({ id: parseInt(graphId) })
-            if (!res.success || !res.data){
-                console.log(res.message)
+            if (!res.success || !res.data) {
                 return
             }
-            console.log(res.data)
             setGraph(res.data)
 
         }
@@ -32,7 +30,9 @@ export const GraphProvider = ({ children }: { children: ReactNode }) => {
     }, [graphId])
 
     const updateGraph = useCallback((changes: GraphChanges) => {
-        setGraph(prev => merge({}, prev, changes))
+        setGraph(prev => mergeWith({}, prev, changes, (_, srcVal) => {
+            if (Array.isArray(srcVal)) return srcVal // always replace arrays
+        }));
         debouncedSave(changes)
     }, [debouncedSave])
 

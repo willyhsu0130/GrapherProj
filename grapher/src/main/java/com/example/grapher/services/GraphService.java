@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.grapher.mappers.GraphMapper;
 import com.example.grapher.models.API.GraphResponse;
 import com.example.grapher.models.API.PatchGraphRequest;
 import com.example.grapher.models.User;
@@ -18,11 +19,13 @@ import com.example.grapher.repositories.UserRepository;
 public class GraphService {
     private final GraphRepository graphRepository;
     private final UserRepository userRepository;
+    private final GraphMapper graphMapper;
 
     @Autowired
-    public GraphService(GraphRepository graphRepository, UserRepository userRepository) {
+    public GraphService(GraphRepository graphRepository, UserRepository userRepository, GraphMapper graphMapper) {
         this.graphRepository = graphRepository;
         this.userRepository = userRepository;
+        this.graphMapper = graphMapper;
     }
 
     public Graph createNewGraph(String username) {
@@ -61,26 +64,15 @@ public class GraphService {
         return new GraphResponse(
                 graph.getId(),
                 graph.getTitle(),
-                graph.getXAxis(),
-                graph.getYAxis(),
-                graph.getData());
+                graph.getData(),
+                graph.getSnapshot(),
+                graph.getSeries());
     }
 
     public GraphResponse patchGraphById(Long id, PatchGraphRequest request) {
-        Graph graph = graphRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Graph not found"));
-
-        if (request.getTitle() != null)
-            graph.setTitle(request.getTitle());
-        if (request.getXAxis() != null)
-            graph.setXAxis(request.getXAxis());
-        if (request.getYAxis() != null)
-            graph.setYAxis(request.getYAxis());
-        System.out.println(request.getData());
-        if (request.getData() != null)
-            graph.setData(request.getData());
-
-        graphRepository.save(graph);
-        return new GraphResponse(graph.getId(), graph.getTitle(), graph.getXAxis(), graph.getYAxis(), graph.getData());
+        Graph graph = graphRepository.findById(id).orElseThrow();
+        graphMapper.patchGraphFromRequest(request, graph);
+        Graph saved = graphRepository.save(graph);
+        return graphMapper.toResponse(saved);
     }
 }

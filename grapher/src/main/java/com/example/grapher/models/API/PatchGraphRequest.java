@@ -16,4 +16,5 @@ public class PatchGraphRequest {
     private GridAxis xAxis;
     private GridAxis yAxis;
     private List<List<Object>> data;
+    private String snapshot;
 }

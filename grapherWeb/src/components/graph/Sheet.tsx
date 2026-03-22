@@ -35,7 +35,7 @@ export const Sheet = () => {
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [])
-
+    
     const afterChange = (change: Handsontable.CellChange[] | null, source: Handsontable.ChangeSource) => {
         if (!change) return
         if (source === 'loadData') {
@@ -52,6 +52,7 @@ export const Sheet = () => {
     }
 
     const handleAddRow = () => {
+        console.log("Add row handled")
         const data = graph?.data;
         if (!data) return;
 
@@ -76,9 +77,13 @@ export const Sheet = () => {
     const handleRemoveColumn = () => {
         const data = graph?.data
         if (!data) return
+        console.log(data)
+        const colRemoved = data.map(row => row.slice(0, -1))
+        console.log("colRemoved", colRemoved)
         updateGraph({
-            data: data.map(row => row.slice(0, -1))
+            data: colRemoved
         })
+        console.log(data)
     }
     return (
         <div className="w-full h-full border border-black flex flex-col">
