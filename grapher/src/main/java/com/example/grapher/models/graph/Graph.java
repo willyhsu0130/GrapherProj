@@ -3,9 +3,9 @@ package com.example.grapher.models.graph;
 import java.util.List;
 
 import com.example.grapher.models.User;
-import com.example.grapher.models.graph.converters.GraphDataConverter;
-import com.example.grapher.models.graph.converters.GridAxisConverter;
-import com.example.grapher.models.graph.converters.SeriesListConverter;
+import com.example.grapher.models.converters.GraphDataConverter;
+import com.example.grapher.models.converters.GridAxisConverter;
+import com.example.grapher.models.converters.SeriesListConverter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;

@@ -3,14 +3,15 @@ import type { DoubleArray } from "./GraphContextType"
 export type Graph = {
     id: number
     title?: string
-    sereies?: Series[];
+    series?: Series[];
     data?: DoubleArray<number | string | null>
     snapshot?: string
 }
 
-type Series = {
+export type Series = {
     xAxis?: Axis
     yAxis?: Axis
+    title?: string
 }
 
 type Axis = {

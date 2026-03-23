@@ -1,4 +1,4 @@
-package com.example.grapher.models.graph.converters;
+package com.example.grapher.models.converters;
 
 import java.util.List;
 

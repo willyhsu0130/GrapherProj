@@ -1,4 +1,4 @@
-package com.example.grapher.models.graph.converters;
+package com.example.grapher.models.converters;
 
 import com.example.grapher.models.graph.GridAxis;
 import com.fasterxml.jackson.core.JsonProcessingException;

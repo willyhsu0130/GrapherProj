@@ -3,7 +3,6 @@ package com.example.grapher.models.API;
 import java.util.List;
 
 import com.example.grapher.models.graph.Series;
-import com.example.grapher.models.graph.GridAxis;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
