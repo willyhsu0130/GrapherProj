@@ -95,7 +95,7 @@ export const Sheet = () => {
                     width="100%"
                     stretchH="all"
                     
-                    data={graph?.data}
+                    data={graph?.data ?? undefined}
                     rowHeaders={true}
                     colHeaders={true}
                     autoWrapRow={true}
