@@ -25,6 +25,7 @@ const Login = () => {
                 if (token && tokenUsername) loginToken(token, tokenUsername);
                 navigate("/graphs")
             } else {
+                console.log(res)
                 alert(res.message);
             }
         } catch (error) {

@@ -25,7 +25,10 @@ const Graphs = () => {
             setIsLoading(true);
             if (!username) throw new Error("No token");
             const res = await createGraph();
-            if (!res.success) { alert(res.message); return; }
+            if (!res.success) { 
+                console.log(res)
+                alert(res.message); return; 
+            }
             const graphId = res?.data?.id;
             if (!graphId) throw new Error("No graphId found");
             navigator(`${graphId}`);
@@ -40,7 +43,7 @@ const Graphs = () => {
         const fetcher = async () => {
             setIsFetching(true);
             const res = await fetchAllGraphs();
-            if (!res.success) { console.log(res.message); }
+            if (!res.success) { console.log(res); }
             const graphs = res?.data;
             if (graphs) setGraphs(graphs);
             setIsFetching(false);
