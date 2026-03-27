@@ -144,7 +144,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.example.GrapherApplication</mainClass>
+                            <mainClass>com.example.grapher.GrapherApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
