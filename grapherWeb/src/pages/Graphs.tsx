@@ -115,7 +115,7 @@ const Graphs = () => {
                             <Thumbnail
                                 graphId={item.id}
                                 title={item.title || "Untitled"}
-                                png={item.snapshot}
+                                png={item.snapshot || undefined}
                             />
                         </div>
                     ))}
