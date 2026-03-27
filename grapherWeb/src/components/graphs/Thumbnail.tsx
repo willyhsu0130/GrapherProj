@@ -15,10 +15,13 @@ export const Thumbnail = ({ graphId, title, png }: ThumbnailProps) => {
         >
             {/* Preview area */}
             <div className="flex-1 bg-white overflow-hidden relative">
-                <img
-                    src={png}
-                    className="w-full h-full object-contain"
-                />
+                {png &&
+                    <img
+                        src={png}
+                        className="w-full h-full object-contain"
+                    />
+                }
+
             </div>
 
             {/* Title bar */}
