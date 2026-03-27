@@ -87,3 +87,91 @@ A modern, interactive React-based frontend for creating, editing, and visualizin
 - **tailwind-merge**: 3.5.0 - Merge Tailwind classes
 
 ## Project Structure
+
+## Key Components
+
+### Graph Editor (`Graph.tsx`)
+Main page for editing graphs. Features:
+- Split-panel layout with data sheet and chart
+- Real-time synchronization between sheet and chart
+- Settings sidebar with accordion controls
+
+### Data Sheet (`Sheet.tsx`)
+Handsontable-based spreadsheet for data entry:
+- Add/remove rows and columns
+- Edit cells with instant updates
+- Auto-sync with visualization
+
+### Chart Grid (`Grid.tsx`)
+Recharts scatter chart visualization:
+- Multiple series rendering
+- Trendline overlay
+- Automatic snapshot generation
+- Responsive sizing
+
+### Settings Panel (`Settings.tsx`)
+Accordion-based settings interface:
+- Series management
+- Axis configuration
+- Styling options
+- Trendline analysis
+
+### Series Manager (`Series.tsx`)
+Add and configure data series:
+- Series title
+- X/Y axis column mapping
+- Color customization
+- Add/remove series
+
+### Analysis Panel (`Analysis.tsx`)
+Trendline management:
+- Add linear or polynomial trendlines
+- Manual gradient/y-intercept input
+- Automatic recalculation
+- Series selection
+
+## API Integration
+
+Connects to the GrapherBackend API:
+- **Base URL**: Configured via `FRONTEND_URL` environment variable
+- **Authentication**: JWT tokens in Authorization header
+- **Endpoints**:
+  - `POST /api/users/signup` - Register
+  - `POST /api/users/login` - Login
+  - `GET /api/graph/` - Fetch all graphs
+  - `POST /api/graph/create` - Create graph
+  - `GET /api/graph/{id}` - Get graph details
+  - `PATCH /api/graph/{id}` - Update graph
+
+## State Management
+
+### AuthProvider
+Manages user authentication state:
+- Login/logout
+- Token storage
+- User info
+
+### GraphProvider
+Manages graph editing state:
+- Current graph data
+- Real-time updates
+- Sync with backend
+
+## Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm preview
+
+# Lint code
+npm run lint
+
