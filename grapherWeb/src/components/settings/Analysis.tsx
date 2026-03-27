@@ -40,7 +40,6 @@ export const Analysis = () => {
 const Trendline = () => {
     const { graph, updateGraph } = useGraph()
     const [lineTitle, setLineTitle] = useState("");
-    const [lineType, setLineType] = useState<"linear" | "polynomial">()
     const trendlines = graph?.trendlines ?? [];
 
     const handleAddTrendline = () => {
@@ -92,30 +91,49 @@ const Trendline = () => {
 
 const TrendlineItem = ({ item, index, onRemove }: { item: Trendline, index: number, onRemove: () => void }) => {
     const { updateGraph, graph } = useGraph();
-    const series = graph?.series ?? undefined
-    const [selectedSeries, setSelectedSeries] = useState<Series | null>(null)
+    const series = graph?.series ?? [];
+    const [selectedSeries, setSelectedSeries] = useState<Series | null>(
+        series.find(s => s.id === item?.seriesId) ?? null
+    );
+
+    const updateTrendline = (fields: Partial<Trendline>) => {
+        const updated = (graph?.trendlines ?? []).map((s, i) =>
+            i === index ? { ...s, ...fields } as typeof s : s
+        );
+        updateGraph({ trendlines: updated });
+    };
+
     const handleChange = (field: 'gradient' | 'yIntercept') =>
         (e: React.ChangeEvent<HTMLInputElement>) => {
-            const updated = graph!.trendlines?.map((s, i) =>
-                i === index ? { ...s, [field]: parseFloat(e.target.value) } as typeof s : s
-            );
-            updateGraph({ trendlines: updated });
-        }
+            const value = parseFloat(e.target.value);
+            updateTrendline({ [field]: isNaN(value) ? undefined : value });
+        };
+
+    const handleSeriesIdChange = (val: Series) => {
+        updateTrendline({ seriesId: val.id });
+    };
+
+    const handleRecalculate = () => {
+        updateTrendline({ gradient: undefined, yIntercept: undefined });
+    };
     return (
         <FieldGroup className="border border-black p-3">
             <Field>
-                <FieldLabel>Title</FieldLabel>
+                <FieldLabel>Series</FieldLabel>
                 <Combobox
                     items={series}
                     itemToStringValue={(item: Series) => item.title?.content ?? ""}
                     value={selectedSeries}
-                    onValueChange={(val) => setSelectedSeries(val as Series)}
+                    onValueChange={(val) => {
+                        setSelectedSeries(val as Series);
+                        handleSeriesIdChange(val as Series);
+                    }}
                     autoHighlight
                     autoComplete=""
                 >
                     <ComboboxInput placeholder="Select Series" value={selectedSeries?.title?.content ?? ""} />
                     <ComboboxContent>
-                        <ComboboxEmpty>No trendlines found.</ComboboxEmpty>
+                        <ComboboxEmpty>No series found.</ComboboxEmpty>
                         <ComboboxList>
                             {(item: Series) => (
                                 <ComboboxItem key={item.title?.content} value={item} title={item.title?.content ?? ""}>
@@ -130,25 +148,27 @@ const TrendlineItem = ({ item, index, onRemove }: { item: Trendline, index: numb
                     </ComboboxContent>
                 </Combobox>
             </Field>
-            {
-                item?.type === "linear" ?
+            {selectedSeries && item?.type === "linear" &&
+                <div className="flex-col gap-y-3">
                     <div className="flex">
                         <Field>
                             <FieldLabel>Gradient</FieldLabel>
-                            <Input type="number" onChange={handleChange('gradient')} value={item.gradient ?? ""} />
+                            <Input type="number" step="0.1" onChange={handleChange('gradient')} value={item.gradient ?? ""} />
                         </Field>
                         <Field>
                             <FieldLabel>Y-intercept</FieldLabel>
-                            <Input type="number" onChange={handleChange('yIntercept')} value={item.yIntercept ?? ""} />
+                            <Input type="number" step="0.1" onChange={handleChange('yIntercept')} value={item.yIntercept ?? ""} />
                         </Field>
                     </div>
-                    :
-                    <div className="flex">
-                        <p>Polynomial not yet supported</p>
+                    <div>
+                        <Field>
+                            <Button onClick={handleRecalculate}>Recalculate</Button>
+                        </Field>
                     </div>
 
+                </div>
             }
-
+            {item?.type === "polynomial" && <p>Polynomial not yet supported</p>}
             <Button variant="ghost" size="sm" onClick={onRemove}>Remove Trendline</Button>
         </FieldGroup>
     );

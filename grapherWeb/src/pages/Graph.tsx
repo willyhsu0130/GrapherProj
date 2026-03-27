@@ -1,4 +1,4 @@
-import { Grid } from '../components/graph/Grid.tsx';
+import { Grid } from '../components/graph/grid/Grid.tsx';
 import { Sheet } from "../components/graph/Sheet.tsx"
 import { Settings } from "../components/graph/Settings.tsx"
 import { Group, Panel, Separator } from "react-resizable-panels";

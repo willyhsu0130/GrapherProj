@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class Series {
     @Id //
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increments the ID
-    private Long id;
+    private String id;
 
     @Column(columnDefinition = "TEXT")
     @Convert(converter = GridAxisConverter.class)

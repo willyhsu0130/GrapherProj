@@ -50,26 +50,31 @@ const zGridAxis = z.object({
 
 const zSeries = z.object({
     title: zText.nullish(),
-    color: z.string(),
+    color: z.string().nullish(),
     xAxis: zGridAxis.nullish(),
     yAxis: zGridAxis.nullish(),
+    id: z.string().nullish()
 })
 
 const zTrendlineBase = z.object({
-    id: z.string().optional(),
-    seriesId: z.string(),
-    color: z.string(),
+    // .nullish() allows null AND undefined AND string
+    id: z.string().nullish(),
+    seriesId: z.string().nullish(),
+    color: z.string().nullish(),
     title: zText.nullish(),
 })
 
 const zTrendline = z.discriminatedUnion("type", [
     zTrendlineBase.extend({
-        type: z.literal("linear"),
+        type: z.literal("linear"), // MUST NOT BE NULLISH
         gradient: z.number().nullish(),
         yIntercept: z.number().nullish(),
     }),
-    zTrendlineBase.extend({ type: z.literal("polynomial"), degree: z.number().int() }),
-]).optional()
+    zTrendlineBase.extend({
+        type: z.literal("polynomial"),
+        degree: z.number().int().nullish()
+    }),
+]).nullish();
 
 
 export const PatchGraphSchema = z.object({

@@ -10,7 +10,8 @@ export const useGraphSave = (id: string) => {
             const res = await patchGraphById({ ...changes, id: parseInt(id) })
             if (!res.success) {
                 console.log(res.message)
-                alert(res.message)
+                console.error("Server Validation Error:", res);
+                alert(`Save Failed: ${res.message}`);
             }
         }, 500)
         , [id])

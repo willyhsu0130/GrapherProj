@@ -9,12 +9,13 @@ export const Series = () => {
     const { graph, updateGraph } = useGraph();
     const series = graph?.series ?? [];
     const [inputTitle, setInputTitle] = useState("")
-    const [openItems, setOpenItems] = useState<string[]>([])
 
     const handleAddSeries = () => {
         setInputTitle("")
         updateGraph({
+            
             series: [...series, {
+                id: crypto.randomUUID(),
                 xAxis: { col: "" },
                 yAxis: { col: "" },
                 title: {
@@ -23,8 +24,6 @@ export const Series = () => {
                 color: ""
             }]
         });
-        setOpenItems(prev => [...prev, String(series.length)])
-
     };
 
     const handleRemoveSeries = (index: number) => {
@@ -42,7 +41,7 @@ export const Series = () => {
                 </Button>
             </div>
 
-            <Accordion multiple className="pl-2 w-full" defaultValue={[""]} onValueChange={setOpenItems}>
+            <Accordion multiple className="pl-2 w-full" defaultValue={[""]}>
                 {series.map((item, index) => (
                     <AccordionItem key={index} value={index}>
                         <AccordionTrigger>{`Series ${index + 1} `}</AccordionTrigger>
