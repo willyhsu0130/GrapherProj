@@ -1,20 +1,12 @@
 import type { DoubleArray } from "./GraphContextType"
+import type { Series, PatchGraphRequest } from "@/models/API/APITypes"
 
 export type Graph = {
     id: number
-    title?: string
-    series?: Series[];
+    title?: string | null
+    series?: Series[]
     data?: DoubleArray<number | string | null>
-    snapshot?: string
-}
-
-export type Series = {
-    xAxis?: Axis
-    yAxis?: Axis
-    title?: string
-}
-
-type Axis = {
-    title?: string
-    col?: string
+    snapshot?: string | null
+    xAxis?: PatchGraphRequest["xAxis"]
+    yAxis?: PatchGraphRequest["yAxis"]
 }

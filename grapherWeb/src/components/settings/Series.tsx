@@ -1,4 +1,4 @@
-import type { Series as SeriesType } from "@/models/graph/Graph"
+import type { Series as SeriesType } from "@/models/API/APITypes"
 import { useGraph } from "@/hooks/useGraph"
 import { Field, FieldGroup, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
@@ -11,11 +11,17 @@ export const Series = () => {
     const [inputTitle, setInputTitle] = useState("")
     const [openItems, setOpenItems] = useState<string[]>([])
 
-
     const handleAddSeries = () => {
         setInputTitle("")
         updateGraph({
-            series: [...series, { xAxis: { col: "" }, yAxis: { col: "" }, title: inputTitle }]
+            series: [...series, {
+                xAxis: { col: "" },
+                yAxis: { col: "" },
+                title: {
+                    content: inputTitle,
+                },
+                color: ""
+            }]
         });
         setOpenItems(prev => [...prev, String(series.length)])
 
@@ -63,7 +69,12 @@ const SeriesItem = ({ item, index, onRemove }: { item: SeriesType, index: number
             const updated = graph!.series?.map((s, i) =>
                 i === index
                     ? field === 'title'
-                        ? { ...s, title: e.target.value }
+                        ? {
+                            ...s, title: {
+                                content: e.target.value
+                            }
+
+                        }
                         : { ...s, [field]: { ...s[field as 'xAxis' | 'yAxis'], col: e.target.value } }
                     : s
             );
@@ -74,7 +85,7 @@ const SeriesItem = ({ item, index, onRemove }: { item: SeriesType, index: number
         <FieldGroup className="border border-black p-3">
             <Field>
                 <FieldLabel>Title</FieldLabel>
-                <Input onChange={handleChange('title')} value={item?.title ?? ""} />
+                <Input onChange={handleChange('title')} value={item.title?.content ?? ""} />
             </Field>
             <div className="flex">
                 <Field>

@@ -1,5 +1,5 @@
 
 
-import type { Graph } from "./Graph"
+import type { PatchGraphRequest } from "../API/APITypes"
 
-export type GraphChanges = Omit<Partial<Graph>, 'id'>
+export type GraphChanges = Omit<Partial<PatchGraphRequest>, 'id'>

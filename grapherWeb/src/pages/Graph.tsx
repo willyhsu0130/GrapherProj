@@ -19,7 +19,7 @@ const Graph = () => {
             <div className="h-[8%] flex items-center gap-x-3 p-2">
                 <Link to="/graphs"><Home size={40} /></Link>
                 <div className="flex flex-col w-full justify-start">
-                    <input value={graph?.title} onChange={handleTitleChange}
+                    <input value={graph?.title ?? ""} onChange={handleTitleChange}
                         className='text-xl'
                         style={{ width: `${(graph?.title?.length || 10) + 2}ch` }} />
                     <ActionsBar />

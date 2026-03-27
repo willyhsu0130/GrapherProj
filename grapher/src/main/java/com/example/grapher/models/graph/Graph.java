@@ -6,6 +6,8 @@ import com.example.grapher.models.User;
 import com.example.grapher.models.converters.GraphDataConverter;
 import com.example.grapher.models.converters.GridAxisConverter;
 import com.example.grapher.models.converters.SeriesListConverter;
+import com.example.grapher.models.converters.TrendlineListConverter;
+import com.example.grapher.models.graph.trendline.Trendline;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -48,6 +50,10 @@ public class Graph {
     private GridAxis xAxis;
 
     @Column(columnDefinition = "TEXT")
+    @Convert(converter = TrendlineListConverter.class)
+    private List<Trendline> trendlines;
+
+    @Column(columnDefinition = "TEXT")
     @Convert(converter = GridAxisConverter.class)
     private GridAxis yAxis;
 
@@ -57,4 +63,5 @@ public class Graph {
 
     @Column(columnDefinition = "TEXT")
     private String snapshot;
+
 }

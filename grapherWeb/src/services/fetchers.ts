@@ -151,7 +151,7 @@ export const patchGraphById = async (data: PatchGraphRequest): Promise<ApiRespon
             return { success: false, message: errorMsg };
         }
         const graphId = result.data.id;
-
+        console.log(data)
         return safeFetch<Graph>(`${SERVER_API}/api/graph/${graphId}`, {
             method: "PATCH",
             body: JSON.stringify(data)

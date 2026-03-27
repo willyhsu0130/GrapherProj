@@ -36,7 +36,6 @@ public class GraphController {
     }
     @PatchMapping("/{id}")
     public GraphResponse patchGraph(@PathVariable Long id, @RequestBody PatchGraphRequest request){
-        System.out.println("Received graph request" + request);
         return graphService.patchGraphById(id, request);
     }
 

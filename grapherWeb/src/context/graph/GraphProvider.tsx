@@ -3,14 +3,17 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { GraphContext, } from "./GraphContext.tsx";
 import { useGraphSave } from "../../hooks/useGraphSave.ts";
 import { useParams } from "react-router-dom";
-import type { GraphChanges } from "../../models/graph/GraphChanges.ts";
-import type { Graph } from "../../models/graph/Graph.ts";
-import { fetchGraphById } from "../../services/fetchers.ts";
+import type { GraphChanges } from "@/models/graph/GraphChanges.ts";
+// import type { Graph } from "../../models/graph/Graph.ts";
+import { fetchGraphById } from "@/services/fetchers.ts";
 import { mergeWith } from "lodash";
+import type { PatchGraphRequest } from "@/models/API/APITypes.ts";
+import type { GraphContextType } from "@/models/graph/GraphContextType.ts";
 
 export const GraphProvider = ({ children }: { children: ReactNode }) => {
 
-    const [graph, setGraph] = useState<Graph | undefined>()
+    const [graph, setGraph] = useState<PatchGraphRequest | undefined>()
+    console.log(graph)
 
     const { graphId } = useParams();
 
@@ -31,12 +34,12 @@ export const GraphProvider = ({ children }: { children: ReactNode }) => {
 
     const updateGraph = useCallback((changes: GraphChanges) => {
         setGraph(prev => mergeWith({}, prev, changes, (_, srcVal) => {
-            if (Array.isArray(srcVal)) return srcVal // always replace arrays
+            if (Array.isArray(srcVal)) return srcVal 
         }));
         debouncedSave(changes)
     }, [debouncedSave])
 
-    const value = useMemo(() => ({
+    const value: GraphContextType | undefined= useMemo(() => ({
         graph,
         updateGraph,
         setGraph

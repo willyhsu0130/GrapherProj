@@ -1,5 +1,9 @@
 package com.example.grapher.models.graph;
 
+import com.example.grapher.models.converters.TextConverter;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +14,10 @@ import lombok.NoArgsConstructor;
 public class GridAxis {
     private Integer width;
     private String color;
-    private String title;
+
+    @Column(columnDefinition = "TEXT")
+    @Convert(converter = TextConverter.class)
+    private Text title;
+    
     private String col;
 }

@@ -1,12 +1,9 @@
 import { useMemo } from "react"
 import { debounce } from "lodash"
-import type { PatchGraphRequest } from "../models/API/APITypes"
-import { patchGraphById } from "../services/fetchers"
-
-
+import type { PatchGraphRequest } from "@/models/API/APITypes"
+import { patchGraphById } from "@/services/fetchers"
 
 export const useGraphSave = (id: string) => {
-
 
     const debouncedSave = useMemo(() =>
         debounce(async (changes: Omit<PatchGraphRequest, 'id'>) => {

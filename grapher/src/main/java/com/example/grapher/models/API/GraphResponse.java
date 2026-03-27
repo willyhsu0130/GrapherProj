@@ -2,7 +2,9 @@ package com.example.grapher.models.API;
 
 import java.util.List;
 
+import com.example.grapher.models.graph.GridAxis;
 import com.example.grapher.models.graph.Series;
+import com.example.grapher.models.graph.trendline.Trendline;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,4 +19,7 @@ public class GraphResponse {
     private List<List<Object>> data;
     private String snapshot;
     private List<Series> series;
+    private GridAxis xAxis;
+    private GridAxis yAxis;
+    private List<Trendline> trendlines;
 }

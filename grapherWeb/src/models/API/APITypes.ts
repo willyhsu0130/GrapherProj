@@ -8,12 +8,10 @@ export interface ApiResponse<T> {
     data?: T;
 }
 
-
 export interface GraphResponse {
     id: number
     data: DoubleArray<number | string>
 }
-
 
 export const LoginSchema = z.object({
     username: z.string().min(1, "Required"),
@@ -36,22 +34,58 @@ export const FetchAllGraphsSchema = z.object({
     token: z.jwt()
 })
 
+const zText = z.object({
+    content: z.string().nullish(),
+    color: z.string().nullish(),
+    font: z.string().nullish(),
+    size: z.number().nullish(),
+}).nullish()
+
+const zGridAxis = z.object({
+    title: zText,
+    col: z.string().nullish(),
+    color: z.string().nullish(),
+    width: z.number().nullish()
+}).nullish()
+
+const zSeries = z.object({
+    title: zText.nullish(),
+    color: z.string(),
+    xAxis: zGridAxis.nullish(),
+    yAxis: zGridAxis.nullish(),
+})
+
+const zTrendlineBase = z.object({
+    id: z.string().optional(),
+    seriesId: z.string(),
+    color: z.string(),
+    title: zText.nullish(),
+})
+
+const zTrendline = z.discriminatedUnion("type", [
+    zTrendlineBase.extend({
+        type: z.literal("linear"),
+        gradient: z.number().nullish(),
+        yIntercept: z.number().nullish(),
+    }),
+    zTrendlineBase.extend({ type: z.literal("polynomial"), degree: z.number().int() }),
+]).optional()
+
+
 export const PatchGraphSchema = z.object({
     id: z.number().int(),
     title: z.string().nullish(),
-    xAxis: z.object({
-        title: z.string().nullish(),
-        col: z.string().nullish()
-    }).nullish(),
-    yAxis: z.object({
-        title: z.string().nullish(),
-        col: z.string().nullish()
-    }).nullish(),
+    xAxis: zGridAxis,
+    yAxis: zGridAxis,
+    series: z.array(zSeries).nullish(),
     data: z.array(z.array(z.union([z.string(), z.number(), z.null()]))).nullish(),
-    snapshot: z.string().nullish()
+    snapshot: z.string().nullish(),
+    trendlines: z.array(zTrendline).nullish()
 })
 
 export type PatchGraphRequest = z.infer<typeof PatchGraphSchema>;
 export type LoginRequest = z.infer<typeof LoginSchema>;
 export type SignupRequest = z.infer<typeof SignupSchema>;
 export type FetchGraphRequest = z.infer<typeof FetchGraphSchema>;
+export type Series = z.infer<typeof zSeries>
+export type Trendline = z.infer<typeof zTrendline>

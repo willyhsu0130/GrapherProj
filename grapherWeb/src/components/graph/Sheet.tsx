@@ -94,7 +94,7 @@ export const Sheet = () => {
                     height="100%"
                     width="100%"
                     stretchH="all"
-                    themeName="mainTheme"
+                    
                     data={graph?.data}
                     rowHeaders={true}
                     colHeaders={true}

@@ -66,7 +66,10 @@ public class GraphService {
                 graph.getTitle(),
                 graph.getData(),
                 graph.getSnapshot(),
-                graph.getSeries());
+                graph.getSeries(),
+                graph.getXAxis(),
+                graph.getYAxis(),
+                graph.getTrendlines());
     }
 
     public GraphResponse patchGraphById(Long id, PatchGraphRequest request) {

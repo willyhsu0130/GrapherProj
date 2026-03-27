@@ -1,10 +1,18 @@
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import { Series } from "@/components/settings/Series"
 import { Styling } from "@/components/settings/Styling"
+import type { ReactElement } from "react";
+import { AxisSettings } from "../settings/AxisSettings";
+import { Analysis } from "../settings/Analysis";
 
+interface items {
+    value: string;
+    trigger: string;
+    content: ReactElement
+}
 
 export const Settings = () => {
-    const items = [
+    const items: items[] = [
         {
             value: "series",
             trigger: "Series",
@@ -18,7 +26,29 @@ export const Settings = () => {
             content: (
                 <Styling />
             )
+        },
+        {
+            value: "axis",
+            trigger: "Axis",
+            content: (
+                <AxisSettings />
+            )
+        },
+        {
+            value: "analysis",
+            trigger: "Analysis",
+            content: (
+                <Analysis />
+            )
+        },
+        {
+            value: "legend",
+            trigger: "Legend",
+            content: (
+                <div>
 
+                </div>
+            )
         }
     ]
 
