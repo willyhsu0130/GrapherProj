@@ -3,9 +3,8 @@ import type { Graph } from "../models/graph/Graph.ts";
 import type { PatchGraphRequest, LoginRequest, SignupRequest, FetchGraphRequest, } from "../models/API/APITypes.ts";
 import { PatchGraphSchema, SignupSchema, FetchGraphSchema, LoginSchema} from "../models/API/APITypes.ts";
 
-// const SERVER_API = import.meta.env.VITE_SERVER_API;
-const SERVER_API = "";
-
+const SERVER_API = import.meta.env.VITE_SERVER_API || ""
+console.log(SERVER_API)
 export interface ApiResponse<T> {
     success: boolean;
     message?: string;
@@ -31,6 +30,7 @@ const safeFetch = async <T>(
     options?: RequestInit
 ): Promise<ApiResponse<T>> => {
     try {
+         console.log(url)
         const token = localStorage.getItem("token");
         const headers = {
             "Content-Type": "application/json",
