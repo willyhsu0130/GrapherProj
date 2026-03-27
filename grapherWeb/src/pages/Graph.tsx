@@ -11,7 +11,7 @@ const Graph = () => {
     const { updateGraph, graph } = useGraph()
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        updateGraph({ title: e.target.value })
+        updateGraph({ title: e.target.value || undefined })
     }
 
     return (
