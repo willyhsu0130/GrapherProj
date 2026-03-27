@@ -1,10 +1,12 @@
-import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
 import { RechartsDevtools } from '@recharts/devtools';
+import { ResponsiveContainer } from 'recharts';
 import type { TooltipIndex } from 'recharts';
 import { useGraph } from '@/hooks/useGraph';
 import { useEffect, useMemo, useRef, useCallback } from 'react';
 import { toPng } from 'html-to-image';
 import { COLORS } from '@/constants/colors';
+
 
 // #region Sample data
 const data01 = [
@@ -31,28 +33,36 @@ type GridData = {
 export const Grid = ({ defaultIndex }: { defaultIndex?: TooltipIndex }) => {
     const { graph, updateGraph } = useGraph();
     const ref = useRef<HTMLDivElement>(null);
-
-
+    const trendlines = graph?.trendlines;
     const series = graph?.series ?? [];
 
     const gridData = useMemo((): GridData[][] => {
         const data = graph?.data;
-        const series = graph?.series;
-        const trendlines = graph?.trendlines;
 
+        // Safety check for data and series
         if (!data || !series || data.length < 2) return [];
 
         const [, ...rows] = data;
+
         return series.map(s => {
             const xColNum = s.xAxis?.col ? s.xAxis.col.charCodeAt(0) - 65 : undefined;
             const yColNum = s.yAxis?.col ? s.yAxis.col.charCodeAt(0) - 65 : undefined;
 
-            return rows.map(row => ({
-                x: xColNum !== undefined ? Number(row[xColNum]) : undefined,
-                y: yColNum !== undefined ? Number(row[yColNum]) : undefined,
-            }));
+            return rows
+                .map(row => ({
+                    x: xColNum !== undefined ? Number(row[xColNum]) : undefined,
+                    y: yColNum !== undefined ? Number(row[yColNum]) : undefined,
+                }))
+                // 1. FILTER: Remove points that are NaN or the "empty" 0,0 padding
+                .filter(p =>
+                    p.x !== undefined && !isNaN(p.x) &&
+                    p.y !== undefined && !isNaN(p.y) &&
+                    (p.x !== 0 || p.y !== 0)
+                )
+                // 2. SORT: Order by X so the line connects in a sequence
+                .sort((a, b) => (a.x as number) - (b.x as number));
         });
-    }, [graph]);
+    }, [graph?.data, series]); // Added specific dependencies
 
     const saveSnapshot = useCallback(async () => {
         if (!ref.current) return;
@@ -118,17 +128,24 @@ export const Grid = ({ defaultIndex }: { defaultIndex?: TooltipIndex }) => {
                 />
                 <ZAxis type="number" range={[64, 64]} />
                 <Tooltip cursor={{ strokeDasharray: '3 3' }} defaultIndex={defaultIndex} />
-                {series.map((_, index) => (
-                    <Scatter
-                        name="Scatter"
-                        key={index}
-                        // data={gridData[index] ?? []}
-                        data={data02}
-                        fill={series[index]?.color ?? COLORS[index % COLORS.length]}
-                        line
-                        lineJointType="monotone"
-                    />
-                ))}
+                {series.map((s, index) => {
+                    const strokeColor = s.color || COLORS[index % COLORS.length] || "#8884d8";
+                    return (
+                        <Scatter
+                            name={`Series ${index + 1}`}
+                            key={index}
+                            data={gridData[index] ?? []}
+                            fill={strokeColor}
+
+                            line={{
+                                stroke: strokeColor,
+                                strokeWidth: 3
+                            }}
+                            lineJointType="linear"
+                            lineType="fitting"
+                        />
+                    );
+                })}
             </ScatterChart>
         </div>
     );

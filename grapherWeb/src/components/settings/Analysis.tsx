@@ -64,7 +64,7 @@ const Trendline = () => {
     return (
         <div>
             <div className="flex">
-                <Input placeholder="Series Title" onChange={(e) => setLineTitle(e.target.value)} value={lineTitle} />
+                <Input placeholder="Trendline name" onChange={(e) => setLineTitle(e.target.value)} value={lineTitle} />
                 <Button onClick={handleAddTrendline}>
                     Add Trendline
                 </Button>
@@ -113,7 +113,7 @@ const TrendlineItem = ({ item, index, onRemove }: { item: Trendline, index: numb
                     autoHighlight
                     autoComplete=""
                 >
-                    <ComboboxInput placeholder="Select series" />
+                    <ComboboxInput placeholder="Select Series" value={selectedSeries?.title?.content ?? ""} />
                     <ComboboxContent>
                         <ComboboxEmpty>No trendlines found.</ComboboxEmpty>
                         <ComboboxList>

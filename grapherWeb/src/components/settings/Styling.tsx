@@ -38,7 +38,7 @@ export const Styling = () => {
                 autoHighlight
                 autoComplete=""
             >
-                <ComboboxInput placeholder="Select a series to modify" />
+                <ComboboxInput placeholder="Select a series to modify" value={selectedSeries?.title?.content ?? ""} />
                 <ComboboxContent>
                     <ComboboxEmpty>No series found.</ComboboxEmpty>
                     <ComboboxList>
