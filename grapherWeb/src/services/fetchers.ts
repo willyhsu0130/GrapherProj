@@ -4,7 +4,6 @@ import type { PatchGraphRequest, LoginRequest, SignupRequest, FetchGraphRequest,
 import { PatchGraphSchema, SignupSchema, FetchGraphSchema, LoginSchema} from "../models/API/APITypes.ts";
 
 const SERVER_API = import.meta.env.VITE_SERVER_API || ""
-console.log(SERVER_API)
 export interface ApiResponse<T> {
     success: boolean;
     message?: string;
@@ -30,7 +29,6 @@ const safeFetch = async <T>(
     options?: RequestInit
 ): Promise<ApiResponse<T>> => {
     try {
-         console.log(url)
         const token = localStorage.getItem("token");
         const headers = {
             "Content-Type": "application/json",
@@ -38,7 +36,6 @@ const safeFetch = async <T>(
             ...(token ? { "Authorization": `Bearer ${token}` } : {}),
         };
         const res = await fetch(url, { ...options, headers });
-        console.log("res", res)
         if (res.status === 401) {
             localStorage.clear();
             return Promise.reject("Unauthorized");
@@ -46,7 +43,6 @@ const safeFetch = async <T>(
 
         // Network or HTTP failure
         if (!res.ok) {
-            console.log(res)
             const errorText = await res.text();
             return {
                 success: false,
@@ -57,7 +53,6 @@ const safeFetch = async <T>(
         return { success: true, data }
 
     } catch (err) {
-        console.log(err)
         const message = err instanceof Error ? err.message : "An unexpected error occurred";
         return { success: false, message };
     }
@@ -154,7 +149,6 @@ export const patchGraphById = async (data: PatchGraphRequest): Promise<ApiRespon
             return { success: false, message: errorMsg };
         }
         const graphId = result.data.id;
-        console.log(data)
         return safeFetch<Graph>(`${SERVER_API}/graph/${graphId}`, {
             method: "PATCH",
             body: JSON.stringify(data)

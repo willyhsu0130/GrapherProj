@@ -19,12 +19,8 @@ const App = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<Index />} />
           <Route path="/graphs/:graphId" element={<ProtectedRoutes><GraphProvider><Graph /></GraphProvider></ProtectedRoutes>} />
-        </Routes>
-        <Routes>
-
           <Route path="/user" element={<ProtectedRoutes><User /></ProtectedRoutes>} />
           <Route path="/graphs" element={<ProtectedRoutes><Graphs /></ProtectedRoutes>} />
-
         </Routes>
       </BrowserRouter>
     </AuthProvider>
