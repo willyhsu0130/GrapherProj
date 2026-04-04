@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/combobox"
 import type { Series, Trendline } from "@/models/API/APITypes"
 import { ItemContent, ItemTitle } from "../ui/item"
+import { linearRegression } from "@/services/graph/helpers"
 
 export const Analysis = () => {
 
@@ -90,8 +91,10 @@ const Trendline = () => {
 }
 
 const TrendlineItem = ({ item, index, onRemove }: { item: Trendline, index: number, onRemove: () => void }) => {
-    const { updateGraph, graph } = useGraph();
+    const { updateGraph, graph, gridData } = useGraph();
+    const trendlines = graph?.trendlines
     const series = graph?.series ?? [];
+
     const [selectedSeries, setSelectedSeries] = useState<Series | null>(
         series.find(s => s.id === item?.seriesId) ?? null
     );
@@ -113,9 +116,29 @@ const TrendlineItem = ({ item, index, onRemove }: { item: Trendline, index: numb
         updateTrendline({ seriesId: val.id });
     };
 
-    const handleRecalculate = () => {
-        updateTrendline({ gradient: undefined, yIntercept: undefined });
-    };
+    const calculateTrendlineValues = () => {
+        // Determine if tendline is linear
+        if (item?.type !== "linear") return
+
+        // Find yIntercept, gradient using double array and the selected series
+        const updated = trendlines?.map((trendline) => {
+            if (trendline?.type !== "linear") return trendline;
+            const seriesId = trendline.seriesId;
+            if(!seriesId) return null
+            const currentData = gridData[seriesId];
+            if (!currentData) return trendline;
+
+            const { m, b } = linearRegression(currentData);
+
+            return {
+                ...trendline,
+                gradient: m,      // only set if not already set
+                yIntercept: b,  // only set if not already set
+            };
+        });
+        updateGraph({ trendlines: updated });
+    }
+
     return (
         <FieldGroup className="border border-black p-3">
             <Field>
@@ -162,7 +185,7 @@ const TrendlineItem = ({ item, index, onRemove }: { item: Trendline, index: numb
                     </div>
                     <div>
                         <Field>
-                            <Button onClick={handleRecalculate}>Recalculate</Button>
+                            <Button onClick={calculateTrendlineValues}>Recalculate</Button>
                         </Field>
                     </div>
 

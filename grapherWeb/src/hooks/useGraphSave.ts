@@ -7,6 +7,7 @@ export const useGraphSave = (id: string) => {
 
     const debouncedSave = useMemo(() =>
         debounce(async (changes: Omit<PatchGraphRequest, 'id'>) => {
+            console.log(changes)
             const res = await patchGraphById({ ...changes, id: parseInt(id) })
             if (!res.success) {
                 console.log(res.message)

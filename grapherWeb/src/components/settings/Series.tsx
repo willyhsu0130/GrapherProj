@@ -77,6 +77,7 @@ const SeriesItem = ({ item, index, onRemove }: { item: SeriesType, index: number
                         : { ...s, [field]: { ...s[field as 'xAxis' | 'yAxis'], col: e.target.value } }
                     : s
             );
+            console.log("updated series", updated)
             updateGraph({ series: updated });
         };
 
