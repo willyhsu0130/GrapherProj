@@ -75,6 +75,7 @@ export const GraphProvider = ({ children }: { children: ReactNode }) => {
         fetcher()
     }, [graphId])
 
+    // Svae snapshot
     const saveSnapshot = useCallback(async () => {
         if (!gridRef.current || !graph?.id) return;
         try {
@@ -82,6 +83,7 @@ export const GraphProvider = ({ children }: { children: ReactNode }) => {
             if (snapshot && snapshot !== graph.snapshot) {
                 await patchGraphById({ snapshot, id: graph.id });
             }
+            return snapshot
         } catch (err) {
             console.error("Snapshot failed:", err);
         }
@@ -102,8 +104,9 @@ export const GraphProvider = ({ children }: { children: ReactNode }) => {
         updateGraph,
         setGraph,
         gridData,
-        gridRef
-    }), [graph, updateGraph, gridData])
+        gridRef,
+        saveSnapshot
+    }), [graph, updateGraph, gridData, saveSnapshot])
 
     return (
         <GraphContext.Provider value={value}>

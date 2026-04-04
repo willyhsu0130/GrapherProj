@@ -5,6 +5,7 @@ import { Group, Panel, Separator } from "react-resizable-panels";
 import { useGraph } from '../hooks/useGraph.ts';
 import { Home } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { ActionsBar } from '@/components/graph/ActionBar.tsx';
 
 
 const Graph = () => {
@@ -53,19 +54,4 @@ const Graph = () => {
     )
 
 }
-const ActionsBar = () => {
-    return (
-        <div className="flex gap-x-3">
-            <button className="text-sm">File</button>
-            <button className="text-sm">Edit</button>
-            <button className="text-sm">View</button>
-            <button className="text-sm">Insert</button>
-            <button className="text-sm">Format</button>
-            <button className="text-sm">Tools</button>
-        </div>
-    )
-}
-
-
-
 export default Graph; 

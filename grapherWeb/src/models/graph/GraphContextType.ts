@@ -16,6 +16,7 @@ export interface GraphContextType {
     updateGraph: (changes: GraphChanges) => void;
     gridRef: RefObject<HTMLDivElement | null>;
     gridData: Record<string, { x: number; y: number }[]>
+    saveSnapshot: () => Promise<string | undefined>
    
 }
 
