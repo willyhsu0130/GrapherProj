@@ -14,7 +14,6 @@ import {
 import { Label } from "@/components/ui/label"
 import type { Series } from "@/models/API/APITypes"
 import type { Trendline } from "@/models/API/APITypes"
-import { Input } from "../ui/input"
 
 type SelectableItem = (Series | Trendline) & { _type: "series" | "trendline" };
 
