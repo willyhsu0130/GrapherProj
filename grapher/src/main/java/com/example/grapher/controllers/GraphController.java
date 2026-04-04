@@ -21,7 +21,7 @@ import com.example.grapher.services.GraphService;
 
 
 @RestController
-@RequestMapping("/api/graph")
+@RequestMapping("/v1/grapher/graph")
 public class GraphController {
     private final GraphService graphService;
 

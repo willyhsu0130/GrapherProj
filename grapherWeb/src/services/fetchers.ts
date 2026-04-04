@@ -71,7 +71,7 @@ export const signup = async (data: SignupRequest): Promise<ApiResponse<UserRespo
             const errorMsg = result.error.issues[0].message;
             return { success: false, message: errorMsg };
         }
-        return await safeFetch<UserResponse>(`${SERVER_API}/api/users/signup`, {
+        return await safeFetch<UserResponse>(`${SERVER_API}/users/signup`, {
             method: "POST",
             body: JSON.stringify(result.data)
         });
@@ -91,7 +91,7 @@ export const login = async (data: LoginRequest): Promise<ApiResponse<UserRespons
             return { success: false, message: errorMsg };
         }
 
-        return safeFetch<UserResponse>(`${SERVER_API}/api/users/login`, {
+        return safeFetch<UserResponse>(`${SERVER_API}/users/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(result.data)
@@ -105,7 +105,7 @@ export const login = async (data: LoginRequest): Promise<ApiResponse<UserRespons
 
 export const fetchAllGraphs = async (): Promise<ApiResponse<Graph[]>> => {
     try {
-        return safeFetch<Graph[]>(`${SERVER_API}/api/graph/`, {
+        return safeFetch<Graph[]>(`${SERVER_API}/graph/`, {
             method: "GET",
         })
 
@@ -118,7 +118,7 @@ export const fetchAllGraphs = async (): Promise<ApiResponse<Graph[]>> => {
 export const createGraph = async (): Promise<ApiResponse<GraphResponse>> => {
     try {
 
-        return safeFetch<GraphResponse>(`${SERVER_API}/api/graph/create`, {
+        return safeFetch<GraphResponse>(`${SERVER_API}/graph/create`, {
             method: "POST",
         })
 
@@ -137,7 +137,7 @@ export const fetchGraphById = async (data: FetchGraphRequest): Promise<ApiRespon
             return { success: false, message: errorMsg };
         }
         const graphId = result.data.id;
-        return safeFetch<Graph>(`${SERVER_API}/api/graph/${graphId}`)
+        return safeFetch<Graph>(`${SERVER_API}/graph/${graphId}`)
     } catch (err) {
         const message = err instanceof Error ? err.message : "An unexpected error occured when fetching graph by id.";
         return { success: false, message }
@@ -155,7 +155,7 @@ export const patchGraphById = async (data: PatchGraphRequest): Promise<ApiRespon
         }
         const graphId = result.data.id;
         console.log(data)
-        return safeFetch<Graph>(`${SERVER_API}/api/graph/${graphId}`, {
+        return safeFetch<Graph>(`${SERVER_API}/graph/${graphId}`, {
             method: "PATCH",
             body: JSON.stringify(data)
         })

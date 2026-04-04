@@ -17,7 +17,7 @@ import com.example.grapher.services.JwtService;
 import com.example.grapher.services.UserService;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/v1/grapher/users")
 public class UserController {
 
     private final UserService userService;
