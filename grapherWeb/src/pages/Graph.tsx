@@ -45,7 +45,6 @@ const Graph = () => {
                         </Panel>
                     </Group>
                 </Panel>
-
             </Group>
 
         </div>

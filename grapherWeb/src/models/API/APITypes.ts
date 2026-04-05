@@ -34,6 +34,7 @@ export const FetchAllGraphsSchema = z.object({
     token: z.jwt()
 })
 
+
 const zText = z.object({
     content: z.string().nullish(),
     color: z.string().nullish(),
@@ -53,7 +54,8 @@ const zSeries = z.object({
     color: z.string().nullish(),
     xAxis: zGridAxis.nullish(),
     yAxis: zGridAxis.nullish(),
-    id: z.string().nullish()
+    id: z.string().nullish(),
+    width: z.number().nullish()
 })
 
 const zTrendlineBase = z.object({
@@ -62,6 +64,8 @@ const zTrendlineBase = z.object({
     seriesId: z.string().nullish(),
     color: z.string().nullish(),
     title: zText.nullish(),
+    width: z.number().nullish(),
+    lineType: z.enum(["Dashed", "Solid", "Dotted"])
 })
 
 const zTrendline = z.discriminatedUnion("type", [

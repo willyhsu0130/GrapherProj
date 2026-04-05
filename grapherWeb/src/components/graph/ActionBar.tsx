@@ -71,7 +71,7 @@ export const ActionsBar = () => {
             {menus.map(menu => (
                 <DropdownMenu key={menu.label}>
                     <DropdownMenuTrigger>
-                        <button className="text-sm">{menu.label}</button>
+                        {menu.label}
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-40" align="start">
                         <DropdownMenuGroup>

@@ -75,7 +75,7 @@ export const GraphProvider = ({ children }: { children: ReactNode }) => {
         fetcher()
     }, [graphId])
 
-    // Svae snapshot
+    // Save snapshot
     const saveSnapshot = useCallback(async () => {
         if (!gridRef.current || !graph?.id) return;
         try {
@@ -91,13 +91,14 @@ export const GraphProvider = ({ children }: { children: ReactNode }) => {
 
 
     const updateGraph = useCallback((changes: GraphChanges) => {
-        setGraph(prev => mergeWith({}, prev, changes, (_, srcVal) => {
-            if (Array.isArray(srcVal)) return srcVal
-        }));
-        console.log(changes)
-        saveSnapshot();
-        debouncedSave(changes)
-    }, [debouncedSave, saveSnapshot])
+    setGraph(prev => {
+        const merged = mergeWith({}, prev, changes, (_, srcVal) => {
+            if (Array.isArray(srcVal)) return srcVal;
+        });
+        debouncedSave(merged);
+        return merged;
+    });
+}, [debouncedSave])
 
     const value: GraphContextType | undefined = useMemo(() => ({
         graph,

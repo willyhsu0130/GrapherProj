@@ -1,0 +1,1 @@
+export const trendlineLineTypes = ["Dashed", "Dotted", "Solid"]

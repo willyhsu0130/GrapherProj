@@ -47,10 +47,12 @@ const Trendline = () => {
         setLineTitle("")
         updateGraph({
             trendlines: [...trendlines, {
+                id: crypto.randomUUID(),
                 type: "linear" as const,
                 seriesId: "",
                 title: { content: lineTitle },
-                color: ""
+                color: "",
+                lineType: "Solid"
             }]
         });
     }
@@ -124,7 +126,7 @@ const TrendlineItem = ({ item, index, onRemove }: { item: Trendline, index: numb
         const updated = trendlines?.map((trendline) => {
             if (trendline?.type !== "linear") return trendline;
             const seriesId = trendline.seriesId;
-            if(!seriesId) return null
+            if (!seriesId) return null
             const currentData = gridData[seriesId];
             if (!currentData) return trendline;
 
@@ -132,10 +134,11 @@ const TrendlineItem = ({ item, index, onRemove }: { item: Trendline, index: numb
 
             return {
                 ...trendline,
-                gradient: m,      // only set if not already set
-                yIntercept: b,  // only set if not already set
+                gradient: m,     
+                yIntercept: b, 
             };
         });
+        console.log(updated)
         updateGraph({ trendlines: updated });
     }
 
