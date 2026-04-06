@@ -4,7 +4,6 @@ import { GraphContext, } from "./GraphContext.tsx";
 import { useGraphSave } from "../../hooks/useGraphSave.ts";
 import { useParams } from "react-router-dom";
 import type { GraphChanges } from "@/models/graph/GraphChanges.ts";
-// import type { Graph } from "../../models/graph/Graph.ts";
 import { fetchGraphById } from "@/services/fetchers.ts";
 import { mergeWith } from "lodash";
 import type { PatchGraphRequest } from "@/models/API/APITypes.ts";

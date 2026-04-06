@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "type",
-    defaultImpl = LinearTrendline.class // Add this line!
+    defaultImpl = LinearTrendline.class 
 )
 @JsonSubTypes({
         @JsonSubTypes.Type(value = LinearTrendline.class, name = "linear"),

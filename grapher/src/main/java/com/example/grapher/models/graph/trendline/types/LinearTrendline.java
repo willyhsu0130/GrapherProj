@@ -18,18 +18,20 @@ public class LinearTrendline extends Trendline {
             String id,
             String seriesId,
             String color,
-            Text title, 
+            Text title,
             Integer width,
             TrendlineLineTypes lineType,
             Double gradient,
             Double yIntercept) {
         super(id, seriesId, color, title, width, lineType);
+        this.gradient = gradient;
+        this.yIntercept = yIntercept;
     }
 
     @Column(columnDefinition = "TEXT")
-    private Long gradient;
+    private Double gradient;
 
     @Column(columnDefinition = "TEXT")
-    private Long yIntercept;
+    private Double yIntercept;
 
 }
