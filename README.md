@@ -3,7 +3,7 @@
 A full-stack web application for creating, editing, and visualizing scatter plot data with advanced analysis tools including trendlines, multi-series support, and real-time data editing.
 
 Built with a **React + TypeScript** frontend and a **Spring Boot** REST API backend, deployed as a monorepo on Railway.
-The application is live at: [https://grapherproj-production.up.railway.app/](https://grapherproj-production.up.railway.app/)
+The application is live at: [https://grapher.willyhsu0130.com/)
 
 ---
 
