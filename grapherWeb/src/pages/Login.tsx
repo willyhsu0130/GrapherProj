@@ -69,6 +69,7 @@ const Login = () => {
                         <div className="flex flex-col gap-1.5">
                             <label className="text-xs text-white/40 uppercase tracking-widest">Username</label>
                             <Input
+                                id="username"
                                 type="text"
                                 className="bg-transparent border-white/10 text-white placeholder:text-white/20 rounded-none h-10 focus:border-white/40"
                                 onChange={(e) => setUsername(e.target.value)}
@@ -78,6 +79,7 @@ const Login = () => {
                         <div className="flex flex-col gap-1.5">
                             <label className="text-xs text-white/40 uppercase tracking-widest">Password</label>
                             <Input
+                                id="password"
                                 type="password"
                                 className="bg-transparent border-white/10 text-white placeholder:text-white/20 rounded-none h-10 focus:border-white/40"
                                 onChange={(e) => setPassword(e.target.value)}

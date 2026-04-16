@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.grapher.mappers.GraphMapper;
 import com.example.grapher.models.API.GraphResponse;
@@ -28,6 +29,7 @@ public class GraphService {
         this.graphMapper = graphMapper;
     }
 
+    @Transactional
     public Graph createNewGraph(String username) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -51,6 +53,7 @@ public class GraphService {
         return graphRepository.save(graph);
     }
 
+    @Transactional(readOnly = true)
     public List<Graph> fetchAllGraphs(String username) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -72,6 +75,7 @@ public class GraphService {
                 graph.getTrendlines());
     }
 
+    @Transactional
     public GraphResponse patchGraphById(Long id, PatchGraphRequest request) {
         Graph graph = graphRepository.findById(id).orElseThrow();
         graphMapper.patchGraphFromRequest(request, graph);

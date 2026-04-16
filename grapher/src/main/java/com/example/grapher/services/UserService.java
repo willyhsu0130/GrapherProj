@@ -6,14 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.example.grapher.models.User;
 import com.example.grapher.models.API.LoginRequest;
 import com.example.grapher.models.API.SignupRequest;
+import com.example.grapher.models.User;
 import com.example.grapher.repositories.UserRepository;
 
 @Service
+@Transactional(readOnly = true)
 public class UserService {
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -24,6 +26,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     public User createNewUser(SignupRequest request) {
 
         if (userRepository.existsByUsernameOrEmail(request.getUsername(), request.getEmail())) {

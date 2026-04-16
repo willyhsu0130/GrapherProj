@@ -65,6 +65,7 @@ const Signup = () => {
                         <div className="flex flex-col gap-1.5">
                             <label className="text-xs text-white/40 uppercase tracking-widest">Username</label>
                             <Input
+                                id="username"
                                 type="text"
                                 className="bg-transparent border-white/10 text-white placeholder:text-white/20 rounded-none h-10 focus:border-white/40"
                                 onChange={(e) => setUsername(e.target.value)}
@@ -76,6 +77,7 @@ const Signup = () => {
                             <div className="flex flex-col gap-1.5">
                                 <label className="text-xs text-white/40 uppercase tracking-widest">First Name</label>
                                 <Input
+                                    id="firstName"
                                     type="text"
                                     className="bg-transparent border-white/10 text-white placeholder:text-white/20 rounded-none h-10 focus:border-white/40"
                                     onChange={(e) => setFirstName(e.target.value)}
@@ -85,6 +87,7 @@ const Signup = () => {
                             <div className="flex flex-col gap-1.5">
                                 <label className="text-xs text-white/40 uppercase tracking-widest">Last Name</label>
                                 <Input
+                                    id="lastName"
                                     type="text"
                                     className="bg-transparent border-white/10 text-white placeholder:text-white/20 rounded-none h-10 focus:border-white/40"
                                     onChange={(e) => setLastName(e.target.value)}
@@ -96,6 +99,7 @@ const Signup = () => {
                         <div className="flex flex-col gap-1.5">
                             <label className="text-xs text-white/40 uppercase tracking-widest">Email Address</label>
                             <Input
+                                id="email"
                                 type="email"
                                 className="bg-transparent border-white/10 text-white placeholder:text-white/20 rounded-none h-10 focus:border-white/40"
                                 onChange={(e) => setEmail(e.target.value)}
@@ -106,6 +110,7 @@ const Signup = () => {
                         <div className="flex flex-col gap-1.5">
                             <label className="text-xs text-white/40 uppercase tracking-widest">Password</label>
                             <Input
+                                id="password"
                                 type="password"
                                 autoComplete="new-password"
                                 className="bg-transparent border-white/10 text-white placeholder:text-white/20 rounded-none h-10 focus:border-white/40"
