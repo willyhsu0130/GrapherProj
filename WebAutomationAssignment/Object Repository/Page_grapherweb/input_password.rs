@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>input_Password</name>
+   <name>input_password</name>
    <tag></tag>
-   <elementGuidId>69cd4df1-8aef-4107-8eaa-eea9391dbc30</elementGuidId>
+   <elementGuidId>5391de31-e840-432d-8033-83451a106d92</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>//*[@aria-describedby = 'demo_password_label']</value>
+         <key>CSS</key>
+         <value>#password</value>
       </entry>
       <entry>
-         <key>CSS</key>
-         <value>[aria-describedby=&quot;demo_password_label&quot;]</value>
+         <key>XPATH</key>
+         <value>//*[@id = 'password']</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -29,78 +29,70 @@
       <name>tag</name>
       <type>Main</type>
       <value>input</value>
-      <webElementGuid>376b41e9-42cc-4f61-8f03-add120baaf3d</webElementGuid>
+      <webElementGuid>022efa3d-fb64-499a-895f-0e246bcd1aa7</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>type</name>
+      <name>id</name>
       <type>Main</type>
-      <value>text</value>
-      <webElementGuid>e962de8d-b6c5-4eee-8063-e90b855a8618</webElementGuid>
+      <value>password</value>
+      <webElementGuid>24245118-ce27-4393-bde2-21b295216dd0</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>data-slot</name>
+      <type>Main</type>
+      <value>input</value>
+      <webElementGuid>9740fbc3-a4bf-42b5-bb9e-842162e34625</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>form-control</value>
-      <webElementGuid>83489a3a-d3d0-485d-97ec-8b855b0cd0cc</webElementGuid>
+      <value>w-full min-w-0 border px-2.5 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 bg-transparent border-white/10 text-white placeholder:text-white/20 rounded-none h-10 focus:border-white/40</value>
+      <webElementGuid>b3fc2962-2bc6-4886-a582-79c33d09f004</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>placeholder</name>
+      <name>type</name>
       <type>Main</type>
-      <value>Password</value>
-      <webElementGuid>67e54c72-3775-41c0-b376-04badb820fcf</webElementGuid>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>aria-describedby</name>
-      <type>Main</type>
-      <value>demo_password_label</value>
-      <webElementGuid>b6aa774b-a73f-467f-a967-39993275a5a2</webElementGuid>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>value</name>
-      <type>Main</type>
-      <value>ThisIsNotAPassword</value>
-      <webElementGuid>50579a17-d35f-4c63-8b8b-13fdcf4bf999</webElementGuid>
+      <value>password</value>
+      <webElementGuid>5048a393-d1dd-4003-9a52-08f2f87a1ecf</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>parent</name>
       <type>Main</type>
-      <value>md5.v1-bb093e07dfbc2a65cae25252f15b1049</value>
-      <webElementGuid>db0c17b5-530d-4308-8d4a-940cd11602d5</webElementGuid>
+      <value>md5.v1-9e9af563cb0d5d92f852b4749a4d17cd</value>
+      <webElementGuid>1b573fce-ad73-4206-b242-1ba278cd6f24</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>//*[@aria-describedby = 'demo_password_label']</value>
-      <webElementGuid>2dc4bc3e-4651-4bf8-bb8b-dd4d916bc6bf</webElementGuid>
+      <value>//*[@id = 'password']</value>
+      <webElementGuid>facf8ff6-9818-4e76-9f72-ab4988687720</webElementGuid>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:attributes</name>
       <type>Main</type>
-      <value>//*[@aria-describedby = 'demo_password_label']</value>
-      <webElementGuid>a8b07499-be2f-4c21-b55f-dc06883a4d8d</webElementGuid>
+      <value>//*[@id = 'password']</value>
+      <webElementGuid>b649bd50-a8ba-4390-b759-166ad83df5ad</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:customAttributes</name>
       <type>Main</type>
-      <value>//input[@type = 'text' and @placeholder = 'Password']</value>
-      <webElementGuid>858521e5-08f0-44d0-8a3b-556f9a8983b1</webElementGuid>
+      <value>//input[@id = 'password' and @type = 'password']</value>
+      <webElementGuid>d713aaf3-9ba3-4a6b-9f1a-f3fe1b0eea67</webElementGuid>
    </webElementXpaths>
 </WebElementEntity>

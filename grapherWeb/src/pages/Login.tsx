@@ -3,10 +3,13 @@ import { login } from '../services/fetchers.ts';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.ts';
 import { Input } from '@/components/ui/input';
+import { Alert, AlertDescription } from '@/components/ui/alert.tsx';
+import { AlertCircleIcon } from 'lucide-react';
 
 const Login = () => {
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const { token, loginToken } = useAuth()
     const navigate = useNavigate();
     const { state } = useLocation();
@@ -17,6 +20,7 @@ const Login = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setErrorMessage('');
         try {
             const res = await login({ username, password });
             if (res.success) {
@@ -25,12 +29,12 @@ const Login = () => {
                 if (token && tokenUsername) loginToken(token, tokenUsername);
                 navigate("/graphs")
             } else {
-                console.log(res)
-                alert(res.message);
+                console.log(res.message)
+                setErrorMessage(res.message || "Login Failed");
             }
         } catch (error) {
             console.log(error)
-            alert("Login failed.");
+            setErrorMessage("Login failed.");
         }
     };
 
@@ -50,7 +54,6 @@ const Login = () => {
             <div className="flex-1 flex items-center justify-center">
                 <div className="w-full max-w-sm">
 
-                    {/* Session expired banner */}
                     {state?.sessionExpired && (
                         <div className="mb-6 border border-white/20 px-4 py-3 text-xs text-white/60 uppercase tracking-widest">
                             Session expired — please sign in again.
@@ -65,10 +68,11 @@ const Login = () => {
                         </a>
                     </p>
 
-                    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                    <form noValidate onSubmit={handleSubmit} className="flex flex-col gap-4">
                         <div className="flex flex-col gap-1.5">
                             <label className="text-xs text-white/40 uppercase tracking-widest">Username</label>
                             <Input
+                                formNoValidate
                                 id="username"
                                 type="text"
                                 className="bg-transparent border-white/10 text-white placeholder:text-white/20 rounded-none h-10 focus:border-white/40"
@@ -79,6 +83,7 @@ const Login = () => {
                         <div className="flex flex-col gap-1.5">
                             <label className="text-xs text-white/40 uppercase tracking-widest">Password</label>
                             <Input
+                                formNoValidate
                                 id="password"
                                 type="password"
                                 className="bg-transparent border-white/10 text-white placeholder:text-white/20 rounded-none h-10 focus:border-white/40"
@@ -86,6 +91,14 @@ const Login = () => {
                                 required
                             />
                         </div>
+
+                        {errorMessage && (
+                            <Alert variant="destructive">
+                                <AlertCircleIcon className="h-4 w-4" />
+                                <AlertDescription>{errorMessage}</AlertDescription>
+                            </Alert>
+                        )}
+
                         <button
                             type="submit"
                             className="mt-2 bg-white text-black py-2.5 text-xs uppercase tracking-widest font-medium hover:bg-white/80 transition-opacity cursor-pointer border-none"

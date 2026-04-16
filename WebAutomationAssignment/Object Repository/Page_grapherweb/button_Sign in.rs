@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>button_btn-login</name>
+   <name>button_Sign in</name>
    <tag></tag>
-   <elementGuidId>fc97b178-00d3-46de-b9ea-5e286680c3f8</elementGuidId>
+   <elementGuidId>77033382-d10a-435f-be28-cce6209b172d</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>//*[@id = 'btn-login']</value>
+         <key>CSS</key>
+         <value>.tracking-widest.text-xs.bg-white</value>
       </entry>
       <entry>
-         <key>CSS</key>
-         <value>#btn-login</value>
+         <key>XPATH</key>
+         <value>//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' tracking-widest ') and contains(concat(' ', normalize-space(@class), ' '), ' text-xs ') and contains(concat(' ', normalize-space(@class), ' '), ' bg-white ')]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -29,15 +29,7 @@
       <name>tag</name>
       <type>Main</type>
       <value>button</value>
-      <webElementGuid>e073879c-407a-4260-81af-71abd242d28e</webElementGuid>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>true</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>id</name>
-      <type>Main</type>
-      <value>btn-login</value>
-      <webElementGuid>a70f2ca4-a5eb-44e8-8469-620500a1cebf</webElementGuid>
+      <webElementGuid>5223faf7-9cd7-4ca5-9b21-1341ba355189</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -45,54 +37,54 @@
       <name>type</name>
       <type>Main</type>
       <value>submit</value>
-      <webElementGuid>3fcc7a06-a50e-41ef-b776-d1c0e1cedc0d</webElementGuid>
+      <webElementGuid>3a628776-bbc6-4fbb-b711-8ddfaf93bfbf</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>btn btn-default</value>
-      <webElementGuid>c080eaa9-974f-4e70-bc41-0b45fa5c6b3e</webElementGuid>
+      <value>mt-2 bg-white text-black py-2.5 text-xs uppercase tracking-widest font-medium hover:bg-white/80 transition-opacity cursor-pointer border-none</value>
+      <webElementGuid>10e6910e-45fd-43de-870e-72a6a87c3a32</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>Login</value>
-      <webElementGuid>47910faa-3f08-4a7d-9f1f-c309c892204c</webElementGuid>
+      <value>Sign in</value>
+      <webElementGuid>1f6b11eb-5a7f-430e-ac9b-0159bab55047</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>parent</name>
       <type>Main</type>
-      <value>md5.v1-1b6b57d9e0c55aba5c1431dc2d9648da</value>
-      <webElementGuid>8ed14a86-440b-454b-b720-7e55e1a31719</webElementGuid>
+      <value>md5.v1-76f0a8c35e71ce16f7dfe14e56045927</value>
+      <webElementGuid>648fdcd5-e20f-40ae-a063-5a3827635554</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>//*[@id = 'btn-login']</value>
-      <webElementGuid>5cefcfa1-a76a-4bf6-b76c-8d3c9a01be74</webElementGuid>
+      <value>//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' tracking-widest ') and contains(concat(' ', normalize-space(@class), ' '), ' text-xs ') and contains(concat(' ', normalize-space(@class), ' '), ' bg-white ')]</value>
+      <webElementGuid>8e21be6f-4253-44f7-9b75-65948d4f75b9</webElementGuid>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:attributes</name>
       <type>Main</type>
-      <value>//*[@id = 'btn-login']</value>
-      <webElementGuid>b1d8e090-0ff9-4013-bb4c-66d5404d9eed</webElementGuid>
+      <value>//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' tracking-widest ') and contains(concat(' ', normalize-space(@class), ' '), ' text-xs ') and contains(concat(' ', normalize-space(@class), ' '), ' bg-white ')]</value>
+      <webElementGuid>abcbde08-3a29-4523-9c13-9a04c4ae81b5</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:customAttributes</name>
       <type>Main</type>
-      <value>//button[@id = 'btn-login' and @type = 'submit' and (text() = 'Login' or . = 'Login')]</value>
-      <webElementGuid>d09c0b37-e8fc-4992-8c71-4b4300d84bdc</webElementGuid>
+      <value>//button[@type = 'submit' and (text() = 'Sign in' or . = 'Sign in')]</value>
+      <webElementGuid>d3fbd3e3-5af8-4982-8655-7aca42f68db8</webElementGuid>
    </webElementXpaths>
 </WebElementEntity>

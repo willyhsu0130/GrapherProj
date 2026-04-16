@@ -44,6 +44,7 @@ const safeFetch = async <T>(
         // Network or HTTP failure
         if (!res.ok) {
             const errorText = await res.text();
+            console.log(errorText)
             return {
                 success: false,
                 message: errorText || "Request Failed"
@@ -53,6 +54,7 @@ const safeFetch = async <T>(
         return { success: true, data }
 
     } catch (err) {
+        console.log(err)
         const message = err instanceof Error ? err.message : "An unexpected error occurred";
         return { success: false, message };
     }
@@ -83,6 +85,7 @@ export const login = async (data: LoginRequest): Promise<ApiResponse<UserRespons
 
         if (!result.success) {
             const errorMsg = result.error.issues[0].message;
+            console.log(errorMsg)
             return { success: false, message: errorMsg };
         }
 
