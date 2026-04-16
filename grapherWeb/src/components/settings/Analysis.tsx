@@ -52,7 +52,8 @@ const Trendline = () => {
                 seriesId: "",
                 title: { content: lineTitle },
                 color: "",
-                lineType: "Solid"
+                lineType: "Solid",
+                width: 1
             }]
         });
     }

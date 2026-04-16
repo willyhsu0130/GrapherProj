@@ -3,6 +3,7 @@ import { useGraph } from '@/hooks/useGraph';
 import { useMemo } from 'react';
 import { COLORS } from '@/constants/colors';
 import { Trendlines } from './Trendlines';
+import { ErrorBar } from './ErrorBar';
 
 export const Grid = ({ defaultIndex }: { defaultIndex?: number }) => {
     const { graph, gridData, gridRef } = useGraph();
@@ -24,13 +25,30 @@ export const Grid = ({ defaultIndex }: { defaultIndex?: number }) => {
                 {series.map((seriesItem, index) => {
                     const strokeColor = seriesItem.color || COLORS[index % COLORS.length] || "#8884d8";
                     if (!seriesItem.id) return null;
+                    const currentData = gridData[seriesItem.id] ?? [];
                     return (
-                        <Scatter
-                            name={`Series ${index + 1}`}
-                            key={index}
-                            data={gridData[seriesItem.id] ?? []}
-                            fill={strokeColor}
-                        />
+                        // For each scatter also add ErrorBars
+                        <>
+                            {/* 1. Draw the actual dots */}
+                            <Scatter
+                                name={seriesItem.title?.content || `Series ${index + 1}`}
+                                data={currentData}
+                                fill={strokeColor}
+                            />
+
+                            {/* 2. Loop through the SAME data to draw error bars for each point */}
+                            {seriesItem.errorBar && currentData.map((point, index) => (
+                                <ErrorBar
+                                    key={`${seriesItem.id}-err-${index}`}
+                                    x={Number(point.x)} // Ensure these are numbers
+                                    y={Number(point.y)}
+                                    color={seriesItem.errorBar?.color || strokeColor}
+                                    width={seriesItem.errorBar?.width ?? 3}
+                                    lineType={seriesItem.errorBar?.lineType}
+                                />
+                            ))}
+                        </>
+
                     );
                 })}
                 <Trendlines />

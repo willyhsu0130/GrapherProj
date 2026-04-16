@@ -3,7 +3,7 @@ package com.example.grapher.models.API;
 import java.util.List;
 
 import com.example.grapher.models.graph.GridAxis;
-import com.example.grapher.models.graph.Series;
+import com.example.grapher.models.graph.series.Series;
 import com.example.grapher.models.graph.trendline.Trendline;
 
 import lombok.AllArgsConstructor;

@@ -49,13 +49,21 @@ const zGridAxis = z.object({
     width: z.number().nullish()
 }).nullish()
 
+const zErrorBar = z.object({
+    color: z.string().nullish(),
+    width: z.number().nullish(),
+    lineType: z.enum(["Dashed", "Solid", "Dotted"]),
+    errorBarType: z.enum([" PERCENTAGE", "CONSTANT", "STD_DEV"])
+})
+
 const zSeries = z.object({
     title: zText.nullish(),
     color: z.string().nullish(),
     xAxis: zGridAxis.nullish(),
     yAxis: zGridAxis.nullish(),
     id: z.string().nullish(),
-    width: z.number().nullish()
+    width: z.number().nullish(),
+    errorBar: zErrorBar.nullish()
 })
 
 const zTrendlineBase = z.object({
@@ -81,6 +89,7 @@ const zTrendline = z.discriminatedUnion("type", [
 ]).nullish();
 
 
+
 export const PatchGraphSchema = z.object({
     id: z.number().int(),
     title: z.string().nullish(),
@@ -89,7 +98,7 @@ export const PatchGraphSchema = z.object({
     series: z.array(zSeries).nullish(),
     data: z.array(z.array(z.union([z.string(), z.number(), z.null()]))).nullish(),
     snapshot: z.string().nullish(),
-    trendlines: z.array(zTrendline).nullish()
+    trendlines: z.array(zTrendline).nullish(),
 })
 
 export type PatchGraphRequest = z.infer<typeof PatchGraphSchema>;

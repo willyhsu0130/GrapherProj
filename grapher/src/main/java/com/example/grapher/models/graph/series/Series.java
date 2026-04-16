@@ -1,7 +1,11 @@
-package com.example.grapher.models.graph;
+package com.example.grapher.models.graph.series;
 
+import com.example.grapher.models.converters.ErrorBarsConverter;
 import com.example.grapher.models.converters.GridAxisConverter;
 import com.example.grapher.models.converters.TextConverter;
+import com.example.grapher.models.graph.GridAxis;
+import com.example.grapher.models.graph.Text;
+import com.example.grapher.models.graph.series.ErrorBars.ErrorBars;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -34,4 +38,8 @@ public class Series {
 
     @Column(columnDefinition = "TEXT")
     private String color;
+
+    @Column(columnDefinition = "TEXT")
+    @Convert(converter = ErrorBarsConverter.class)
+    private ErrorBars errorbars;
 }

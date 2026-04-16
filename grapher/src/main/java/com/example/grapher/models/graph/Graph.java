@@ -7,6 +7,7 @@ import com.example.grapher.models.converters.GraphDataConverter;
 import com.example.grapher.models.converters.GridAxisConverter;
 import com.example.grapher.models.converters.SeriesListConverter;
 import com.example.grapher.models.converters.TrendlineListConverter;
+import com.example.grapher.models.graph.series.Series;
 import com.example.grapher.models.graph.trendline.Trendline;
 
 import jakarta.persistence.Column;

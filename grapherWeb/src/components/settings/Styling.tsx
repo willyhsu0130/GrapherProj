@@ -6,6 +6,7 @@ import {
     ComboboxInput, ComboboxItem, ComboboxList,
 } from "@/components/ui/combobox"
 
+import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 import {
     ItemContent,
     ItemTitle,
@@ -14,7 +15,7 @@ import {
 import { Label } from "@/components/ui/label"
 import type { Series } from "@/models/API/APITypes"
 import type { Trendline } from "@/models/API/APITypes"
-import { Field, FieldLabel } from "../ui/field"
+import { Field, FieldLabel, FieldSet, FieldGroup } from "../ui/field"
 import { Input } from "../ui/input"
 
 import { trendlineLineTypes } from "@/constants/trendlineLineTypes"
@@ -35,7 +36,6 @@ export const Styling = () => {
 
     const [selected, setSelected] = useState<SelectableItem | null>(null);
 
-
     type FieldConfig =
         | { field: 'lineType'; type: 'string' }
         | { field: 'width'; type: 'number' }
@@ -51,8 +51,11 @@ export const Styling = () => {
             if (!selected) return;
             const parsed = parseValue(value, type);
 
+            // Change locally
             setSelected({ ...selected, [field]: parsed });
-            
+
+            // Change in server
+
             if (selected._type === "series") {
                 updateGraph({
                     series: series?.map(s =>
@@ -69,7 +72,70 @@ export const Styling = () => {
             }
         };
 
+    const initErrorBar = () => {
+        if (!selected || selected._type !== "series") return;
 
+        const newErrorBar = {
+            color: selected.color ?? "#ff0000",
+            width: 3,
+            lineType: "Dashed" as const,
+            errorBarType: "CONSTANT" as const
+        };
+
+        // Update Local UI
+        setSelected({ ...selected, errorBar: newErrorBar });
+
+        // Update Global State
+        updateGraph({
+            series: series?.map(s =>
+                s.id === selected.id ? { ...s, errorBar: newErrorBar } : s
+            )
+        });
+    };
+
+    const removeErrorBar = () => {
+        if (!selected || selected._type !== "series") return;
+
+        setSelected({ ...selected, errorBar: null });
+
+        updateGraph({
+            series: series?.map(s =>
+                s.id === selected.id ? { ...s, errorBar: null } : s
+            )
+        });
+    };
+
+    // const handleErrorBarChange = (subField: string, type: FieldConfig['type']) => (value: string) => {
+    //     console.log("handleErrorBarChange called")
+    //     if (!selected || selected._type !== "series") return;
+
+    //     const parsedValue = parseValue(value, type);
+
+    //     // 1. Create the new errorBar object by merging
+    //     const updatedErrorBar = {
+    //         // Default values if errorBar was null, otherwise spread existing
+    //         ...(selected.errorBar ?? {
+    //             errorBarType: "CONSTANT",
+    //             width: 1,
+    //             color: "black",
+    //             lineType: "Solid",
+    //         }),
+    //         [subField]: parsedValue
+    //     };
+
+    //     // 2. Update Locally
+    //     setSelected({
+    //         ...selected,
+    //         errorBar: updatedErrorBar
+    //     });
+
+    //     // 3. Update Global Graph (Server sync)
+    //     updateGraph({
+    //         series: series?.map(s =>
+    //             s.id === selected.id ? { ...s, errorBar: updatedErrorBar } : s
+    //         )
+    //     });
+    // };
     return (
         <div className="flex flex-col gap-4">
             <Combobox
@@ -98,17 +164,19 @@ export const Styling = () => {
             </Combobox>
 
             {selected && (
-                <div className="flex flex-col gap-2">
+
+                <FieldSet className="flex">
                     <Label>Color</Label>
                     <HexColorPicker
                         style={{ width: "100%" }}
                         color={selected.color ?? "#8884d8"}
                         onChange={handleChange({ field: 'color', type: 'color' })}
                     />
-                    <div className="flex">
+                    <FieldGroup>
                         <Field>
                             <FieldLabel>Stroke width</FieldLabel>
                             <Input
+                                min={1}
                                 type="number"
                                 onChange={e => handleChange({ field: 'width', type: 'number' })(e.target.value)}
                                 value={selected?.width ?? ""}
@@ -142,19 +210,50 @@ export const Styling = () => {
                                         </ComboboxList>
                                     </ComboboxContent>
                                 </Combobox>
-                                {/* <Input
-                                    type="text"
-                                    onChange={e => handleChange({ field: 'lineType', type: 'string' })(e.target.value)}
-                                    value={selected.lineType}
-                                /> */}
                             </Field>
                         )}
+                        {
+                            selected._type === "series" && (
+                                <>
+                                    <Field className="w-full">
+                                        <FieldLabel>Error Bars</FieldLabel>
+                                        <Field className="w-full">
+                                            <FieldLabel>Error Bars</FieldLabel>
+                                            <ToggleGroup
+                                                variant="outline"
+                                                value={selected.errorBar ? ["yes"] : ["no"]}
+                                                onValueChange={(val) => {
+                                                    // Because val is an array, we check if "yes" or "no" is inside it
+                                                    if (val.includes("yes")) {
+                                                        initErrorBar();
+                                                    } else {
+                                                        // If they click "no", or unclick "yes", we remove them
+                                                        removeErrorBar();
+                                                    }
+                                                }}
+                                            >
+                                                <ToggleGroupItem value="yes">Yes</ToggleGroupItem>
+                                                <ToggleGroupItem value="no">No</ToggleGroupItem>
+                                            </ToggleGroup>
+                                        </Field>
+                                    </Field>
+                                    {
+                                        selected.errorBar && (
+                                            <div>
+                                                <p>Error Bars Settings</p>
+                                            </div>
 
-                    </div>
+                                        )
+                                    }
+                                    <Field>
 
+                                    </Field>
+                                </>
+                            )
+                        }
+                    </FieldGroup>
+                </FieldSet>
 
-
-                </div>
             )
             }
         </div >

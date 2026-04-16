@@ -3,7 +3,7 @@ package com.example.grapher.models.converters;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.grapher.models.graph.Series;
+import com.example.grapher.models.graph.series.Series;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
