@@ -6,12 +6,16 @@
    <elementGuidId>77033382-d10a-435f-be28-cce6209b172d</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>CSS</key>
-         <value>.tracking-widest.text-xs.bg-white</value>
+         <key>BASIC</key>
+         <value>//*[@type = 'submit' and (text() = 'Sign in' or . = 'Sign in')]</value>
       </entry>
       <entry>
          <key>XPATH</key>
          <value>//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' tracking-widest ') and contains(concat(' ', normalize-space(@class), ' '), ' text-xs ') and contains(concat(' ', normalize-space(@class), ' '), ' bg-white ')]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>.tracking-widest.text-xs.bg-white</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -29,7 +33,7 @@
       <name>tag</name>
       <type>Main</type>
       <value>button</value>
-      <webElementGuid>5223faf7-9cd7-4ca5-9b21-1341ba355189</webElementGuid>
+      <webElementGuid>329b7006-bc2f-49c2-bfbc-4c5e01a7ad5b</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -37,7 +41,7 @@
       <name>type</name>
       <type>Main</type>
       <value>submit</value>
-      <webElementGuid>3a628776-bbc6-4fbb-b711-8ddfaf93bfbf</webElementGuid>
+      <webElementGuid>cdff7d43-70b2-40ae-800a-ef7594d4d80c</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -45,7 +49,7 @@
       <name>class</name>
       <type>Main</type>
       <value>mt-2 bg-white text-black py-2.5 text-xs uppercase tracking-widest font-medium hover:bg-white/80 transition-opacity cursor-pointer border-none</value>
-      <webElementGuid>10e6910e-45fd-43de-870e-72a6a87c3a32</webElementGuid>
+      <webElementGuid>7c67a7d5-a79c-411b-bdd3-1921223e59c6</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -53,7 +57,7 @@
       <name>text</name>
       <type>Main</type>
       <value>Sign in</value>
-      <webElementGuid>1f6b11eb-5a7f-430e-ac9b-0159bab55047</webElementGuid>
+      <webElementGuid>7b126fc2-a7e1-486c-9fb5-75bc088d5e7b</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -61,7 +65,7 @@
       <name>parent</name>
       <type>Main</type>
       <value>md5.v1-76f0a8c35e71ce16f7dfe14e56045927</value>
-      <webElementGuid>648fdcd5-e20f-40ae-a063-5a3827635554</webElementGuid>
+      <webElementGuid>5cab565a-0e8c-4fe5-aa6b-d07ec38d6381</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -69,7 +73,7 @@
       <name>xpath</name>
       <type>Main</type>
       <value>//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' tracking-widest ') and contains(concat(' ', normalize-space(@class), ' '), ' text-xs ') and contains(concat(' ', normalize-space(@class), ' '), ' bg-white ')]</value>
-      <webElementGuid>8e21be6f-4253-44f7-9b75-65948d4f75b9</webElementGuid>
+      <webElementGuid>20ff26e7-677d-4998-8429-371b048ebb5b</webElementGuid>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -77,7 +81,7 @@
       <name>xpath:attributes</name>
       <type>Main</type>
       <value>//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' tracking-widest ') and contains(concat(' ', normalize-space(@class), ' '), ' text-xs ') and contains(concat(' ', normalize-space(@class), ' '), ' bg-white ')]</value>
-      <webElementGuid>abcbde08-3a29-4523-9c13-9a04c4ae81b5</webElementGuid>
+      <webElementGuid>94ce8bdc-b33d-4fb0-8f8d-e92524fa4cc5</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -85,6 +89,6 @@
       <name>xpath:customAttributes</name>
       <type>Main</type>
       <value>//button[@type = 'submit' and (text() = 'Sign in' or . = 'Sign in')]</value>
-      <webElementGuid>d3fbd3e3-5af8-4982-8655-7aca42f68db8</webElementGuid>
+      <webElementGuid>df9b2bee-af61-4307-87de-fc9a644a9b70</webElementGuid>
    </webElementXpaths>
 </WebElementEntity>

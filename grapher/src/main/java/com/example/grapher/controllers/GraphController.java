@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,6 @@ import com.example.grapher.models.API.GraphResponse;
 import com.example.grapher.models.API.PatchGraphRequest;
 import com.example.grapher.models.graph.Graph;
 import com.example.grapher.services.GraphService;
-
 
 @RestController
 @RequestMapping("/v1/grapher/graph")
@@ -34,8 +34,9 @@ public class GraphController {
     public GraphResponse getGraph(@PathVariable Long id) {
         return graphService.getGraphById(id);
     }
+
     @PatchMapping("/{id}")
-    public GraphResponse patchGraph(@PathVariable Long id, @RequestBody PatchGraphRequest request){
+    public GraphResponse patchGraph(@PathVariable Long id, @RequestBody PatchGraphRequest request) {
         return graphService.patchGraphById(id, request);
     }
 
@@ -57,6 +58,18 @@ public class GraphController {
             String username = SecurityContextHolder.getContext().getAuthentication().getName();
             Graph created = graphService.createNewGraph(username);
             return ResponseEntity.ok(created);
+        } catch (ResponseStatusException e) {
+            return ResponseEntity.status(e.getStatusCode()).body(e.getReason());
+        }
+    }
+
+    // id = graphId
+    @DeleteMapping("/{id}") // This maps to DELETE /v1/grapher/graph/{id}
+    public ResponseEntity<?> deleteGraph(@PathVariable Long id) {
+        try {
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            List<Graph> remainingGraphs = graphService.deleteGraph(username, id);
+            return ResponseEntity.ok(remainingGraphs);
         } catch (ResponseStatusException e) {
             return ResponseEntity.status(e.getStatusCode()).body(e.getReason());
         }

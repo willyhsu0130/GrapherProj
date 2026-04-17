@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>graph_thumbnail</name>
+   <tag></tag>
+   <elementGuidId>048ee8b1-c687-4371-b450-11a871fc05ea</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//a[@id='Test1']/div</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>#Test1 > div.flex-1.bg-white.overflow-hidden.relative</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>internal:role=link[name=&quot;Test1 →&quot;i]</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>b58d1267-a8ab-4e55-95ee-308ca297d86c</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>flex-1 bg-white overflow-hidden relative</value>
+      <webElementGuid>ba7c5350-e858-4539-a2c0-50906e3cedee</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;Test1&quot;)/div[@class=&quot;flex-1 bg-white overflow-hidden relative&quot;]</value>
+      <webElementGuid>8eb672c2-a107-43a4-a487-328122a0e3c1</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//a[@id='Test1']/div</value>
+      <webElementGuid>74b1361b-345a-4735-ab3f-dfd8f5a1d9d6</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[3]/a/div</value>
+      <webElementGuid>a06b8918-1bf8-4f76-9067-2da1b3b982a8</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

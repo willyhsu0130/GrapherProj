@@ -7,24 +7,6 @@
    <origin>WEB_RECORDER</origin>
    <recordOption>OTHER</recordOption>
    <testCaseGuid>0b3e9820-4869-40a8-ac0f-81d17913ab98</testCaseGuid>
-   <variableLinks>
-      <testDataLinkId></testDataLinkId>
-      <type>DEFAULT</type>
-      <value></value>
-      <variableId>35e621a8-2db9-4a6c-bc38-12e5e258cb6d</variableId>
-   </variableLinks>
-   <variableLinks>
-      <testDataLinkId></testDataLinkId>
-      <type>DEFAULT</type>
-      <value></value>
-      <variableId>eb55cba4-3bde-47da-afe7-4d6045d410a1</variableId>
-   </variableLinks>
-   <variableLinks>
-      <testDataLinkId></testDataLinkId>
-      <type>DEFAULT</type>
-      <value></value>
-      <variableId>02b456a3-5fd7-418f-8dd3-c06625cd1cc2</variableId>
-   </variableLinks>
    <variable>
       <defaultValue>''</defaultValue>
       <description></description>

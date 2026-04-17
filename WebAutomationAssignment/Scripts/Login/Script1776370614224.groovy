@@ -7,9 +7,9 @@ WebUI.navigateToUrl('http://localhost:5173/login')
 
 boolean success = Boolean.parseBoolean(isSuccess.toString())
 
-WebUI.setText(findTestObject('Page_grapherweb/input_username'), username)
-WebUI.setText(findTestObject('Page_grapherweb/input_password'), password)
-WebUI.click(findTestObject('Page_grapherweb/button_Sign in'))
+WebUI.setText(findTestObject('GrapherWeb/input_username'), username)
+WebUI.setText(findTestObject('GrapherWeb/input_password'), password)
+WebUI.click(findTestObject('GrapherWeb/button_Sign in'))
 
 if (success) {
     // --- Success: Wait for Redirect ---
@@ -25,7 +25,7 @@ if (success) {
     }
 
     if (urlMatched) {
-        WebUI.waitForElementVisible(findTestObject('Page_grapherweb/p_welcome_back'), 5)
+        WebUI.waitForElementVisible(findTestObject('GrapherWeb/p_welcome_back'), 5)
         KeywordUtil.markPassed("SUCCESS: Logged in and redirected.")
     } else {
         KeywordUtil.markFailed("ERROR: Redirect timed out. URL: " + WebUI.getUrl())
@@ -34,7 +34,7 @@ if (success) {
 } else {
     // --- Failure: Just check if Error UI appears ---
     // This passes Requirement 3.2.1 by verifying the "Error message for invalid credentials" shows up
-    boolean errorVisible = WebUI.waitForElementVisible(findTestObject('Page_grapherweb/error_message'), 5)
+    boolean errorVisible = WebUI.waitForElementVisible(findTestObject('GrapherWeb/error_message'), 5)
     
     if (errorVisible) {
         WebUI.verifyMatch(WebUI.getUrl(), '.*/login.*', true)

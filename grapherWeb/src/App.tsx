@@ -9,20 +9,23 @@ import Index from './pages/Index.tsx';
 import User from './pages/User.tsx';
 import Graph from './pages/Graph.tsx';
 import { GraphProvider } from './context/graph/GraphProvider.tsx';
+import { ErrorProvider } from './context/error/ErrorProvider.tsx';
 
 const App = () => {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<Index />} />
-          <Route path="/graphs/:graphId" element={<ProtectedRoutes><GraphProvider><Graph /></GraphProvider></ProtectedRoutes>} />
-          <Route path="/user" element={<ProtectedRoutes><User /></ProtectedRoutes>} />
-          <Route path="/graphs" element={<ProtectedRoutes><Graphs /></ProtectedRoutes>} />
-        </Routes>
-      </BrowserRouter>
+      <ErrorProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/" element={<Index />} />
+            <Route path="/graphs/:graphId" element={<ProtectedRoutes><GraphProvider><Graph /></GraphProvider></ProtectedRoutes>} />
+            <Route path="/user" element={<ProtectedRoutes><User /></ProtectedRoutes>} />
+            <Route path="/graphs" element={<ProtectedRoutes><Graphs /></ProtectedRoutes>} />
+          </Routes>
+        </BrowserRouter>
+      </ErrorProvider>
     </AuthProvider>
   );
 }

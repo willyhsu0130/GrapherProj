@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_FileEditInsertFormatViewTools</name>
+   <tag></tag>
+   <elementGuidId>c38b9cbd-9561-4488-8225-da2c4a404cb6</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' justify-start ')]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>.justify-start</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value></value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>28dcd9b9-f9c7-469b-bfec-86b64259056e</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>flex flex-col w-full justify-start</value>
+      <webElementGuid>59b616e7-e93d-4dbd-a6f4-d0fc1aa50d20</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>FileEditInsertFormatViewTools</value>
+      <webElementGuid>e88200b1-22e3-4932-a58f-eb52a71dc11f</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>parent</name>
+      <type>Main</type>
+      <value>md5.v1-899e0f966381b3c3a7f4289e7e636d1d</value>
+      <webElementGuid>ada6ca2d-63bb-4002-a8e4-0bb5c415bef1</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' justify-start ')]</value>
+      <webElementGuid>d32d2268-8382-47ba-bee5-a5b1bbd68d04</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:attributes</name>
+      <type>Main</type>
+      <value>//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' justify-start ')]</value>
+      <webElementGuid>26bb77d8-aab7-4b4f-933a-32e9d83cb486</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'FileEditInsertFormatViewTools' or . = 'FileEditInsertFormatViewTools')]</value>
+      <webElementGuid>c8a25475-93fa-45c8-ae28-c80f371abdc1</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

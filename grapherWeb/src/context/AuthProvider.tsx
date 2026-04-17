@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
     const [username, setUsername] = useState<string>(JSON.parse(localStorage.getItem("username") || "null"));
 
+
     const loginToken = (token: string, username: string) => {
         setToken(token);
         setUsername(username);

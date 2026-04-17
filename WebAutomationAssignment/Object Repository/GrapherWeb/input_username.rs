@@ -6,12 +6,16 @@
    <elementGuidId>f1e00c56-0cc4-4914-addf-94c873ee46fa</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>CSS</key>
-         <value>#username</value>
+         <key>BASIC</key>
+         <value>//*[@id = 'username' and @type = 'text']</value>
       </entry>
       <entry>
          <key>XPATH</key>
          <value>//*[@id = 'username']</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>#username</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -29,7 +33,7 @@
       <name>tag</name>
       <type>Main</type>
       <value>input</value>
-      <webElementGuid>34659a65-3147-4b07-988d-ec8f08561b02</webElementGuid>
+      <webElementGuid>a27defe4-903b-48a6-ae8e-dc51c6753351</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -37,7 +41,7 @@
       <name>id</name>
       <type>Main</type>
       <value>username</value>
-      <webElementGuid>43ad4996-72fa-4429-a1ef-6d3cf75461e6</webElementGuid>
+      <webElementGuid>0508ac5a-267c-43f7-9361-9a999a31e257</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -45,7 +49,7 @@
       <name>data-slot</name>
       <type>Main</type>
       <value>input</value>
-      <webElementGuid>6d2643d1-94e7-4add-85dc-c508ed5a72df</webElementGuid>
+      <webElementGuid>2d9f3ae8-f2c5-4d71-b84e-b7986a4281fc</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -53,7 +57,7 @@
       <name>class</name>
       <type>Main</type>
       <value>w-full min-w-0 border px-2.5 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 bg-transparent border-white/10 text-white placeholder:text-white/20 rounded-none h-10 focus:border-white/40</value>
-      <webElementGuid>a601fde6-36da-478b-9d16-2b4ced8b9fdb</webElementGuid>
+      <webElementGuid>cbd91133-1fa5-497c-b7cd-c6daf8893d8c</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -61,7 +65,7 @@
       <name>type</name>
       <type>Main</type>
       <value>text</value>
-      <webElementGuid>b509297b-f791-4fc9-ab61-0fb81380e998</webElementGuid>
+      <webElementGuid>0d000d0a-b0e5-4bc3-9679-d6b8bfed8c91</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -69,7 +73,7 @@
       <name>parent</name>
       <type>Main</type>
       <value>md5.v1-3d2c3dd43d9fa890160f2bddb48eef38</value>
-      <webElementGuid>5583222f-f7c2-429a-83c8-f0a5877bae92</webElementGuid>
+      <webElementGuid>87dd5c70-0bd4-4296-a7ed-8e091dd11bb7</webElementGuid>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -77,7 +81,7 @@
       <name>xpath</name>
       <type>Main</type>
       <value>//*[@id = 'username']</value>
-      <webElementGuid>09b2b9da-50d8-4daf-aeca-8bb65f8b2ddc</webElementGuid>
+      <webElementGuid>0d9424a7-c005-4141-b4a9-56d18879fec4</webElementGuid>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -85,7 +89,7 @@
       <name>xpath:attributes</name>
       <type>Main</type>
       <value>//*[@id = 'username']</value>
-      <webElementGuid>ba999d0a-e832-40bb-b244-66efef7a8407</webElementGuid>
+      <webElementGuid>849cd664-47c9-4e94-9a61-b48376481b25</webElementGuid>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -93,6 +97,6 @@
       <name>xpath:customAttributes</name>
       <type>Main</type>
       <value>//input[@id = 'username' and @type = 'text']</value>
-      <webElementGuid>88a16903-f2ca-41b6-86b4-787da94eb786</webElementGuid>
+      <webElementGuid>eed70b8d-68e3-42fc-b591-875891fbbe79</webElementGuid>
    </webElementXpaths>
 </WebElementEntity>

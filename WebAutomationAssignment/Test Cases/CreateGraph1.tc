@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
    <description></description>
-   <name>Basic</name>
+   <name>CreateGraph1</name>
    <tag></tag>
    <comment></comment>
    <origin>WEB_RECORDER</origin>
    <recordOption>OTHER</recordOption>
-   <testCaseGuid>9887fc6f-3fe4-4f46-8de4-9705ef6f3437</testCaseGuid>
+   <testCaseGuid>45e4dc82-1969-4ff5-9abb-45134f3efae4</testCaseGuid>
 </TestCaseEntity>

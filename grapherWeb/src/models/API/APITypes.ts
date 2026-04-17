@@ -30,6 +30,11 @@ export const FetchGraphSchema = z.object({
     id: z.int()
 })
 
+export const DeleteGraphSchema = z.object({
+    // Id = graphId
+    id: z.int()
+})
+
 export const FetchAllGraphsSchema = z.object({
     token: z.jwt()
 })
@@ -104,6 +109,7 @@ export const PatchGraphSchema = z.object({
 export type PatchGraphRequest = z.infer<typeof PatchGraphSchema>;
 export type LoginRequest = z.infer<typeof LoginSchema>;
 export type SignupRequest = z.infer<typeof SignupSchema>;
+export type DeleteGraphRequest = z.infer<typeof DeleteGraphSchema>
 export type FetchGraphRequest = z.infer<typeof FetchGraphSchema>;
 export type Series = z.infer<typeof zSeries>
 export type Trendline = z.infer<typeof zTrendline>

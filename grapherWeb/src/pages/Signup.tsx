@@ -3,6 +3,8 @@ import { signup } from '../services/fetchers.ts';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.ts';
 import { Input } from '@/components/ui/input';
+import { Alert, AlertDescription } from '@/components/ui/alert.tsx';
+import { AlertCircleIcon } from 'lucide-react';
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -11,6 +13,7 @@ const Signup = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [username, setUsername] = useState('');
+    const [errorMessage, setErrorMessage] = useState('')
     const { loginToken } = useAuth();
 
     const handleSignup = async (e: React.FormEvent) => {
@@ -30,11 +33,11 @@ const Signup = () => {
                 if (token && tokenUsername) loginToken(token, tokenUsername);
                 navigate("/graphs")
             } else {
-                alert(res.message);
+                setErrorMessage(res.message || "Login Failed")
             }
         } catch (error) {
             console.log(error)
-            alert("Signup failed.");
+            setErrorMessage("Sign up failed");
         }
     };
 
@@ -61,7 +64,7 @@ const Signup = () => {
                         </a>
                     </p>
 
-                    <form onSubmit={handleSignup} className="flex flex-col gap-4">
+                    <form onSubmit={handleSignup} className="flex flex-col gap-4" noValidate>
                         <div className="flex flex-col gap-1.5">
                             <label className="text-xs text-white/40 uppercase tracking-widest">Username</label>
                             <Input
@@ -118,6 +121,12 @@ const Signup = () => {
                                 required
                             />
                         </div>
+                        {errorMessage && (
+                            <Alert variant="destructive">
+                                <AlertCircleIcon className="h-4 w-4" />
+                                <AlertDescription>{errorMessage}</AlertDescription>
+                            </Alert>
+                        )}
 
                         <button
                             type="submit"

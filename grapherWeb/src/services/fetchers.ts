@@ -1,7 +1,7 @@
 import type { DoubleArray } from "../models/graph/GraphContextType.ts";
 import type { Graph } from "../models/graph/Graph.ts";
-import type { PatchGraphRequest, LoginRequest, SignupRequest, FetchGraphRequest, } from "../models/API/APITypes.ts";
-import { PatchGraphSchema, SignupSchema, FetchGraphSchema, LoginSchema} from "../models/API/APITypes.ts";
+import type { PatchGraphRequest, LoginRequest, SignupRequest, FetchGraphRequest, DeleteGraphRequest, } from "../models/API/APITypes.ts";
+import { PatchGraphSchema, SignupSchema, FetchGraphSchema, LoginSchema, DeleteGraphSchema } from "../models/API/APITypes.ts";
 
 const SERVER_API = import.meta.env.VITE_SERVER_API || ""
 export interface ApiResponse<T> {
@@ -130,7 +130,7 @@ export const createGraph = async (): Promise<ApiResponse<GraphResponse>> => {
 export const fetchGraphById = async (data: FetchGraphRequest): Promise<ApiResponse<Graph>> => {
     try {
         const result = FetchGraphSchema.safeParse(data);
-        if(!result.success){
+        if (!result.success) {
             const errorMsg = result.error.issues[0].message;
             return { success: false, message: errorMsg };
         }
@@ -141,6 +141,21 @@ export const fetchGraphById = async (data: FetchGraphRequest): Promise<ApiRespon
         return { success: false, message }
     }
 
+}
+
+export const deleteGraphByGraphId = async (data: DeleteGraphRequest): Promise<ApiResponse<Graph[]>> => {
+    try {
+        const result = DeleteGraphSchema.safeParse(data)
+        const graphId = result.data?.id;
+
+        return safeFetch<Graph[]>(`${SERVER_API}/graph/${graphId}`, {
+            method: "DELETE",
+            body: JSON.stringify(result)
+        })
+    } catch (err) {
+        const message = err instanceof Error ? err.message : "An unexpected error occured";
+        return { success: false, message }
+    }
 }
 
 export const patchGraphById = async (data: PatchGraphRequest): Promise<ApiResponse<Graph>> => {

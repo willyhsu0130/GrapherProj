@@ -13,11 +13,16 @@ import type { Graph } from "../models/graph/Graph";
 
 const Graphs = () => {
     const [graphs, setGraphs] = useState<Graph[] | undefined>(undefined);
+
     const { username, token } = useAuth();
     const navigator = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [isFetching, setIsFetching] = useState(true);
     const [search, setSearch] = useState("");
+
+    const handleRefresh = (newList: Graph[] | undefined) => {
+        setGraphs(newList);
+    };
 
     const handleCreateGraph = async () => {
         if (isLoading) return;
@@ -25,9 +30,9 @@ const Graphs = () => {
             setIsLoading(true);
             if (!username) throw new Error("No token");
             const res = await createGraph();
-            if (!res.success) { 
+            if (!res.success) {
                 console.log(res)
-                alert(res.message); return; 
+                alert(res.message); return;
             }
             const graphId = res?.data?.id;
             if (!graphId) throw new Error("No graphId found");
@@ -119,6 +124,7 @@ const Graphs = () => {
                                 graphId={item.id}
                                 title={item.title || "Untitled"}
                                 png={item.snapshot || undefined}
+                                onDeleteSuccess={handleRefresh}
                             />
                         </div>
                     ))}

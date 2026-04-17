@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_Test1</name>
+   <tag></tag>
+   <elementGuidId>4a59c774-7e07-45fc-b6db-b8d670f0295d</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' border-r ') and (position() = 3)]//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' border-t ')]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>.border-r:nth-child(3) .border-t</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value></value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>d44f964e-3d9c-480c-9674-f3947ffdabf2</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>px-4 py-3 border-t border-white/10 flex items-center justify-between</value>
+      <webElementGuid>7ba55607-5cb4-49f9-a04a-9ab244fb68ad</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Test1→</value>
+      <webElementGuid>0f5ded83-0cb3-40c3-9549-34c25b277713</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>parent</name>
+      <type>Main</type>
+      <value>md5.v1-c8f55db59ddaafbac7eab55b813da33e</value>
+      <webElementGuid>d38d336d-5a2f-47d4-80ff-47a84400846e</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' border-r ') and (position() = 3)]//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' border-t ')]</value>
+      <webElementGuid>8f49e3e1-a3cd-4318-9582-39b37dab0b7b</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:attributes</name>
+      <type>Main</type>
+      <value>//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' border-r ') and (position() = 3)]//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' border-t ')]</value>
+      <webElementGuid>7d68815d-86eb-4f95-a839-903c465a7634</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Test1→' or . = 'Test1→')]</value>
+      <webElementGuid>08cae5f9-e507-469f-815b-a789d6eaf9eb</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>
