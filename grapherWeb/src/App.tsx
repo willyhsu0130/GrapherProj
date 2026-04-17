@@ -10,6 +10,7 @@ import User from './pages/User.tsx';
 import Graph from './pages/Graph.tsx';
 import { GraphProvider } from './context/graph/GraphProvider.tsx';
 import { ErrorProvider } from './context/error/ErrorProvider.tsx';
+import ErrorPage from './pages/ErrorPage.tsx';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/graphs/:graphId" element={<ProtectedRoutes><GraphProvider><Graph /></GraphProvider></ProtectedRoutes>} />
             <Route path="/user" element={<ProtectedRoutes><User /></ProtectedRoutes>} />
             <Route path="/graphs" element={<ProtectedRoutes><Graphs /></ProtectedRoutes>} />
+            <Route path="/error" element={<ErrorPage />} />
           </Routes>
         </BrowserRouter>
       </ErrorProvider>

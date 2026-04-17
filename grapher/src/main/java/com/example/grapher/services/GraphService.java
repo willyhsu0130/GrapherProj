@@ -34,7 +34,7 @@ public class GraphService {
 
     public Graph createNewGraph(String username) {
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
 
         List<List<Object>> initialData = new ArrayList<>();
 
@@ -45,6 +45,8 @@ public class GraphService {
         // Check if an untitled graph already exists
         long untitledCount = graphRepository.countByUser_IdAndTitleStartingWith(user.getId(), "Untitled Graph");
 
+        // Check if graph with the same name already exists
+        // TODO
         String title = untitledCount == 0 ? "Untitled Graph" : "Untitled Graph " + (untitledCount + 1);
 
         Graph graph = Graph.builder()
@@ -58,14 +60,14 @@ public class GraphService {
     @Transactional(readOnly = true)
     public List<Graph> fetchAllGraphs(String username) {
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
         List<Graph> graphList = graphRepository.findByUser_Id(user.getId());
         return graphList;
     }
 
     public GraphResponse getGraphById(Long id) {
         Graph graph = graphRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Graph not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Graph not found"));
         return new GraphResponse(
                 graph.getId(),
                 graph.getTitle(),

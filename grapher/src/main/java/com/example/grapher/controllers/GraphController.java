@@ -31,8 +31,14 @@ public class GraphController {
     }
 
     @GetMapping("/{id}")
-    public GraphResponse getGraph(@PathVariable Long id) {
-        return graphService.getGraphById(id);
+    public ResponseEntity<?> getGraph(@PathVariable Long id) {
+        try {
+            GraphResponse graph = graphService.getGraphById(id);
+            return ResponseEntity.ok(graph);
+        } catch (ResponseStatusException e) {
+            // This will return 404 if the graph doesn't exist
+            return ResponseEntity.status(e.getStatusCode()).body(e.getReason());
+        }
     }
 
     @PatchMapping("/{id}")

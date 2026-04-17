@@ -10,9 +10,12 @@ import type { PatchGraphRequest } from "@/models/API/APITypes.ts";
 import type { GraphContextType } from "@/models/graph/GraphContextType.ts";
 import { toPng } from "html-to-image";
 import { patchGraphById } from "@/services/fetchers.ts";
+import { useError } from "@/hooks/useError.ts";
+import { useNavigate } from "react-router-dom";
 
 export const GraphProvider = ({ children }: { children: ReactNode }) => {
-
+    const navigator = useNavigate()
+    const { setErrorMessage } = useError()
     const [graph, setGraph] = useState<PatchGraphRequest | undefined>()
     // Get graph Id from params
     const { graphId } = useParams();
@@ -65,14 +68,19 @@ export const GraphProvider = ({ children }: { children: ReactNode }) => {
         const fetcher = async () => {
             if (!graphId) return
             const res = await fetchGraphById({ id: parseInt(graphId) })
+            // If graph has error
             if (!res.success || !res.data) {
-                return
-            }
-            setGraph(res.data)
+                // Set Error Message
+                setErrorMessage(res.message || "Error Fetching Graph")
+                navigator("/error");
+                // Redirect user into error page
 
+            }
+
+            setGraph(res.data)
         }
         fetcher()
-    }, [graphId])
+    }, [graphId, setErrorMessage, navigator])
 
     // Save snapshot
     const saveSnapshot = useCallback(async () => {
@@ -90,14 +98,14 @@ export const GraphProvider = ({ children }: { children: ReactNode }) => {
 
 
     const updateGraph = useCallback((changes: GraphChanges) => {
-    setGraph(prev => {
-        const merged = mergeWith({}, prev, changes, (_, srcVal) => {
-            if (Array.isArray(srcVal)) return srcVal;
+        setGraph(prev => {
+            const merged = mergeWith({}, prev, changes, (_, srcVal) => {
+                if (Array.isArray(srcVal)) return srcVal;
+            });
+            debouncedSave(merged);
+            return merged;
         });
-        debouncedSave(merged);
-        return merged;
-    });
-}, [debouncedSave])
+    }, [debouncedSave])
 
     const value: GraphContextType | undefined = useMemo(() => ({
         graph,
