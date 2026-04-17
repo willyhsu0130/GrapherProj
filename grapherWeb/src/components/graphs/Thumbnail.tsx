@@ -1,17 +1,28 @@
 import { Link } from "react-router-dom"
-import { Ellipsis } from 'lucide-react';
+import { Ellipsis, Trash2, Trash2Icon } from 'lucide-react';
 import {
     DropdownMenu,
     DropdownMenuContent,
-    DropdownMenuGroup,
     DropdownMenuItem,
-    DropdownMenuLabel,
-    // DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useError } from "@/hooks/useError";
 import { deleteGraphByGraphId } from "@/services/fetchers";
 import type { Graph } from "@/models/graph/Graph";
+
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
 
 
 interface ThumbnailProps {
@@ -23,35 +34,24 @@ interface ThumbnailProps {
 
 export const Thumbnail = ({ graphId, title, png, onDeleteSuccess }: ThumbnailProps) => {
     const { setErrorMessage } = useError()
-    const handleDelete = async (e: React.MouseEvent) => {
-        e.preventDefault();
-        e.stopPropagation();
 
-        // Optional: Add a confirm popup to satisfy Project Requirement 3.2.5
-        if (!window.confirm(`Are you sure you want to delete "${title}"?`)) {
-            return;
-        }
-
+    const executeDelete = async () => {
         try {
             const res = await deleteGraphByGraphId({ id: graphId });
-
             if (res.success) {
-                onDeleteSuccess(res.data)
+                onDeleteSuccess(res.data);
             } else {
-                console.error("Delete failed:", res.message);
-                setErrorMessage(res.message || "Delete Failed")
+                setErrorMessage(res.message || "Delete Failed");
             }
         } catch (error) {
-            console.error("Network error during delete:", error);
+            console.log(error)
+            setErrorMessage("Network error during delete.");
         }
     };
-
     const handleMenuClick = (e: React.MouseEvent) => {
         e.preventDefault();   // Stops the <Link> from navigating
         e.stopPropagation();  // Stops the click from "bubbling" up to the <Link>
     };
-
-
 
     return (
         <Link
@@ -73,29 +73,63 @@ export const Thumbnail = ({ graphId, title, png, onDeleteSuccess }: ThumbnailPro
 
             {/* Title bar */}
             <div className="px-4 py-3 border-t border-white/10 flex items-center justify-between">
-                <span className="text-xs text-white/60 group-hover:text-white transition-colors truncate">
+                <span className="text-xs text-white/60 group-hover:text-white truncate">
                     {title}
                 </span>
-                <div className="flex" >
-                    <div onClick={handleMenuClick}>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger>
-                                <Ellipsis color="white" className="white/20 z-20" />
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent className="w-40" align="start">
-                                <DropdownMenuGroup>
-                                    <DropdownMenuItem onClick={handleDelete}>
-                                        <DropdownMenuLabel>Delete Graph</DropdownMenuLabel>
-                                    </DropdownMenuItem>
 
-                                </DropdownMenuGroup>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                <div className="flex items-center gap-3">
+                    <div onClick={handleMenuClick} className="relative z-30">
+
+                        <AlertDialog>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger>
+                                    <button className="p-1.5 rounded-md text-white/30 hover:bg-white/10 outline-none border-none">
+                                        <Ellipsis size={14} />
+                                    </button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent className=" bg-black border-white/10 text-white" align="end">
+
+                                    <AlertDialogTrigger >
+                                        <DropdownMenuItem
+                                            onSelect={(e) => e.preventDefault()}
+                                            className="text-red-500 cursor-pointer"
+                                        >
+                                            <Trash2 size={12} />
+                                            <span className="w-full">Delete Graph</span>
+                                        </DropdownMenuItem>
+                                    </AlertDialogTrigger>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+
+                            <AlertDialogContent size="sm">
+                                <AlertDialogHeader>
+                                    <div>
+                                        <Trash2Icon className="text-red-500" size={24} />
+                                    </div>
+                                    <AlertDialogTitle>
+                                        Delete Graph?
+                                    </AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                        This action cannot be undone. This will permanently delete <b>{title}</b> and remove all data from our servers.
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>
+                                        Cancel
+                                    </AlertDialogCancel>
+                    
+                                    <AlertDialogAction
+                                        onClick={executeDelete}
+                                        className=""
+                                    >
+                                        Confirm Delete
+                                    </AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                     </div>
-
-                    <span className="text-white/20 group-hover:text-white/60 transition-colors text-xs ml-2">→</span>
+                    <span className="text-white/10 group-hover:text-white/40 text-xs ml-2">→</span>
                 </div>
-
             </div>
         </Link>
     )
