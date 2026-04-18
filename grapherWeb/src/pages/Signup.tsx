@@ -122,7 +122,7 @@ const Signup = () => {
                             />
                         </div>
                         {errorMessage && (
-                            <Alert variant="destructive">
+                            <Alert variant="destructive" id="errorMessage">
                                 <AlertCircleIcon className="h-4 w-4" />
                                 <AlertDescription>{errorMessage}</AlertDescription>
                             </Alert>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>button_Get Started</name>
+   <tag></tag>
+   <elementGuidId>1ce03374-0b94-4ed3-9b1c-108eb8ca6f8b</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' tracking-widest ') and contains(concat(' ', normalize-space(@class), ' '), ' text-xs ') and contains(concat(' ', normalize-space(@class), ' '), ' bg-white ')]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>.tracking-widest.text-xs.bg-white</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value></value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>button</value>
+      <webElementGuid>d3d4dba3-ec58-4c25-8aca-2eed411a521c</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>type</name>
+      <type>Main</type>
+      <value>submit</value>
+      <webElementGuid>343ab249-e32f-4c69-b833-c5b83437f2c1</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>mt-4 bg-white text-black py-2.5 text-xs uppercase tracking-widest font-medium hover:bg-white/80 transition-opacity cursor-pointer border-none</value>
+      <webElementGuid>4ec28e37-3681-4bfa-8f76-48e6da2f3938</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Get Started</value>
+      <webElementGuid>e9055ca7-8db3-4b94-82d4-c8629fdb375b</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>parent</name>
+      <type>Main</type>
+      <value>md5.v1-76f0a8c35e71ce16f7dfe14e56045927</value>
+      <webElementGuid>1860f69f-9577-455b-9330-fe2d72d6b49c</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' tracking-widest ') and contains(concat(' ', normalize-space(@class), ' '), ' text-xs ') and contains(concat(' ', normalize-space(@class), ' '), ' bg-white ')]</value>
+      <webElementGuid>f40bd975-adf2-4446-8a9f-37b4a0d51990</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:attributes</name>
+      <type>Main</type>
+      <value>//*[@class and contains(concat(' ', normalize-space(@class), ' '), ' tracking-widest ') and contains(concat(' ', normalize-space(@class), ' '), ' text-xs ') and contains(concat(' ', normalize-space(@class), ' '), ' bg-white ')]</value>
+      <webElementGuid>83d08c83-37d2-4180-955c-b4163a191efe</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//button[@type = 'submit' and (text() = 'Get Started' or . = 'Get Started')]</value>
+      <webElementGuid>fd26f1ff-6c1c-41be-b7e2-8196a838b64f</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>
