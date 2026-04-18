@@ -4,6 +4,7 @@
    <name>CreateGraph</name>
    <tag></tag>
    <comment></comment>
+   <origin>WEB_RECORDER</origin>
    <recordOption>OTHER</recordOption>
-   <testCaseGuid>77a3013f-69fd-4a83-bdf4-39a9aadd9ede</testCaseGuid>
+   <testCaseGuid>45e4dc82-1969-4ff5-9abb-45134f3efae4</testCaseGuid>
 </TestCaseEntity>

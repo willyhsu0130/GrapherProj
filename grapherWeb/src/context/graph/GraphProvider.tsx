@@ -71,12 +71,11 @@ export const GraphProvider = ({ children }: { children: ReactNode }) => {
             // If graph has error
             if (!res.success || !res.data) {
                 // Set Error Message
-                setErrorMessage(res.message || "Error Fetching Graph")
+                setErrorMessage(res.message + "From Provider" || "Error Fetching Graph")
                 navigator("/error");
                 // Redirect user into error page
 
             }
-
             setGraph(res.data)
         }
         fetcher()

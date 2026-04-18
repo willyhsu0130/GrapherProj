@@ -7,8 +7,8 @@ WebUI.navigateToUrl('http://localhost:5173/login')
 
 boolean success = Boolean.parseBoolean(isSuccess.toString())
 
-WebUI.setText(findTestObject('GrapherWeb/input_username'), username)
-WebUI.setText(findTestObject('GrapherWeb/input_password'), password)
+WebUI.setText(findTestObject('GrapherWeb/LoginPage/input_username'), username)
+WebUI.setText(findTestObject('GrapherWeb/LoginPage/input_password'), password)
 WebUI.click(findTestObject('GrapherWeb/button_Sign in'))
 
 if (success) {
@@ -25,7 +25,7 @@ if (success) {
     }
 
     if (urlMatched) {
-        WebUI.waitForElementVisible(findTestObject('GrapherWeb/p_welcome_back'), 5)
+        WebUI.waitForElementVisible(findTestObject('GrapherWeb/GraphsPage/p_welcome_back'), 5)
         KeywordUtil.markPassed("SUCCESS: Logged in and redirected.")
     } else {
         KeywordUtil.markFailed("ERROR: Redirect timed out. URL: " + WebUI.getUrl())

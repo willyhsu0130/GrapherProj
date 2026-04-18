@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestSuiteEntity>
    <description></description>
-   <name>LoginSuite</name>
+   <name>LoginPageTests</name>
    <tag></tag>
    <isRerun>false</isRerun>
    <mailRecipient></mailRecipient>
@@ -15,7 +15,7 @@
       <guid>9b2c28da-14de-4756-8223-1800e8a7d0c8</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Login</testCaseId>
+      <testCaseId>Test Cases/LoginPage/Login</testCaseId>
       <testDataLink>
          <combinationType>ONE</combinationType>
          <id>eaf9b06a-98db-4b1c-8cc0-4454db53cef3</id>

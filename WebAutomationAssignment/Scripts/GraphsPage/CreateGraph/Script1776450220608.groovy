@@ -23,17 +23,17 @@ WebUI.navigateToUrl('http://localhost:5173/graphs')
 
 WebUI.click(findTestObject('GrapherWeb/nav_grapher'))
 
-WebUI.setText(findTestObject('GrapherWeb/input_username'), 'willyhsu0130')
+WebUI.setText(findTestObject('GrapherWeb/LoginPage/input_username'), 'willyhsu0130')
 
-WebUI.click(findTestObject('GrapherWeb/input_password'))
+WebUI.click(findTestObject('GrapherWeb/LoginPage/input_password'))
 
-WebUI.setEncryptedText(findTestObject('GrapherWeb/input_password'), 'RigbBhfdqOBGNlJIWM1ClA==')
+WebUI.setEncryptedText(findTestObject('GrapherWeb/LoginPage/input_password'), 'RigbBhfdqOBGNlJIWM1ClA==')
 
 WebUI.click(findTestObject('GrapherWeb/button_Sign in'))
 
 WebUI.click(findTestObject('GrapherWeb/button_New graph'))
 
-WebUI.setText(findTestObject('GrapherWeb/input_text-xl'), 'Test1')
+WebUI.setText(findTestObject('GrapherWeb/LoginPage/input_text-xl'), 'Test1')
 
 // Give the React app/Spring Boot backend 1 second to save the record
 WebUI.delay(1)
@@ -42,7 +42,7 @@ WebUI.navigateToUrl('http://localhost:5173/graphs')
 
 // FIX: Use verifyElementPresent to return a boolean
 // 5 is the timeout in seconds
-boolean isCreated = WebUI.verifyElementPresent(findTestObject('GrapherWeb/Graphs/graph_thumbnail'), 5, FailureHandling.OPTIONAL)
+boolean isCreated = WebUI.verifyElementPresent(findTestObject('GrapherWeb/GraphsPage/graph_thumbnail'), 5, FailureHandling.OPTIONAL)
 
 if (isCreated) {
     // Pro-Tip: use a literal string since you didn't define graphName variable

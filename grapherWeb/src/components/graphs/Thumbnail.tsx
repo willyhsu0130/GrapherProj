@@ -76,26 +76,27 @@ export const Thumbnail = ({ graphId, title, png, onDeleteSuccess }: ThumbnailPro
                 <span className="text-xs text-white/60 group-hover:text-white truncate">
                     {title}
                 </span>
-
                 <div className="flex items-center gap-3">
                     <div onClick={handleMenuClick} className="relative z-30">
-
                         <AlertDialog>
                             <DropdownMenu>
                                 <DropdownMenuTrigger>
-                                    <button className="p-1.5 rounded-md text-white/30 hover:bg-white/10 outline-none border-none">
-                                        <Ellipsis size={14} />
-                                    </button>
+                                    <div className="flex p-1.5 rounded-md items-center text-white/30 hover:bg-white/10 outline-none border-none">
+                                        <Ellipsis size={14} className="items-center" />
+                                    </div>
                                 </DropdownMenuTrigger>
-                                <DropdownMenuContent className=" bg-black border-white/10 text-white" align="end">
-
+                                <DropdownMenuContent className=" bg-black border-white/10 text-white w-full" align="end">
                                     <AlertDialogTrigger >
                                         <DropdownMenuItem
+                                            id={`delete${title}`}
                                             onSelect={(e) => e.preventDefault()}
-                                            className="text-red-500 cursor-pointer"
+                                            className="cursor-pointer flex w-full"
                                         >
-                                            <Trash2 size={12} />
-                                            <span className="w-full">Delete Graph</span>
+                                            <div className="flex gap-x-1">
+                                                <Trash2 size={12} />
+                                                <span className="">Delete Graph</span>
+                                            </div>
+
                                         </DropdownMenuItem>
                                     </AlertDialogTrigger>
                                 </DropdownMenuContent>
@@ -117,10 +118,10 @@ export const Thumbnail = ({ graphId, title, png, onDeleteSuccess }: ThumbnailPro
                                     <AlertDialogCancel>
                                         Cancel
                                     </AlertDialogCancel>
-                    
+
                                     <AlertDialogAction
                                         onClick={executeDelete}
-                                        className=""
+                                        id="confirmDelete"
                                     >
                                         Confirm Delete
                                     </AlertDialogAction>

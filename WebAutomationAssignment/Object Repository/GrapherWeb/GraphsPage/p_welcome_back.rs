@@ -6,12 +6,12 @@
    <elementGuidId>9cc79656-cd7f-45bb-895d-4c578fe0d008</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>CSS</key>
-         <value>p.text-2xl.font-semibold.tracking-tight</value>
-      </entry>
-      <entry>
          <key>XPATH</key>
          <value>//div[@id='root']/div/div/div/p</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>p.text-2xl.font-semibold.tracking-tight</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

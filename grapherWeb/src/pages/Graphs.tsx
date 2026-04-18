@@ -1,5 +1,5 @@
 import { Thumbnail } from "../components/graphs/Thumbnail";
-import { Plus } from "lucide-react";
+import { AlertCircleIcon, Plus, User } from "lucide-react";
 import { createGraph, fetchAllGraphs } from "../services/fetchers";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
@@ -10,11 +10,15 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import type { Graph } from "../models/graph/Graph";
+import { useError } from "@/hooks/useError";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 const Graphs = () => {
     const [graphs, setGraphs] = useState<Graph[] | undefined>(undefined);
+    const { errorMessage, setErrorMessage, clearErrorMessages } = useError()
 
-    const { username, token } = useAuth();
+    const { username, token, logoutToken } = useAuth();
     const navigator = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [isFetching, setIsFetching] = useState(true);
@@ -32,7 +36,7 @@ const Graphs = () => {
             const res = await createGraph();
             if (!res.success) {
                 console.log(res)
-                alert(res.message); return;
+                setErrorMessage(res.message || "Error Creating Graph")
             }
             const graphId = res?.data?.id;
             if (!graphId) throw new Error("No graphId found");
@@ -48,13 +52,21 @@ const Graphs = () => {
         const fetcher = async () => {
             setIsFetching(true);
             const res = await fetchAllGraphs();
-            if (!res.success) { console.log(res); }
+            if (!res.success) {
+                setErrorMessage(res.message || "Error handling")
+            }
             const graphs = res?.data;
             if (graphs) setGraphs(graphs);
             setIsFetching(false);
         };
         fetcher();
-    }, [token]);
+        return () => {
+            clearErrorMessages()
+        };
+    }, [token, setErrorMessage, clearErrorMessages]);
+
+
+
 
     const filtered = graphs?.filter(g =>
         (g.title || "").toLowerCase().includes(search.toLowerCase())
@@ -88,6 +100,23 @@ const Graphs = () => {
                         <Plus size={14} />
                         {isLoading ? "Creating..." : "New graph"}
                     </Button>
+                    <DropdownMenu >
+                        <DropdownMenuTrigger>
+                            <User />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="w-40" align="start">
+                            <DropdownMenuGroup>
+                                <DropdownMenuItem onClick={logoutToken}>
+                                    <DropdownMenuLabel>Sign Out</DropdownMenuLabel>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem >
+                                    <DropdownMenuLabel>Profile</DropdownMenuLabel>
+                                </DropdownMenuItem>
+                            </DropdownMenuGroup>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+
+
                 </div>
             </div>
 
@@ -136,6 +165,8 @@ const Graphs = () => {
                         </div>
                     )}
                 </div>
+
+
             </div>
 
             <Separator />
@@ -149,7 +180,20 @@ const Graphs = () => {
                     {graphs?.length ?? 0} graphs
                 </Badge>
             </div>
+
+            {
+                errorMessage &&
+                <Alert variant="destructive" className="max-w-md absolute bottom-2 right-2">
+                    <AlertCircleIcon />
+                    <AlertTitle>An error has occured</AlertTitle>
+                    <AlertDescription>
+                        {errorMessage}
+                    </AlertDescription>
+                </Alert>
+
+            }
         </div>
+
     );
 };
 

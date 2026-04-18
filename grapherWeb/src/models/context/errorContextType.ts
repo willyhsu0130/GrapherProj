@@ -3,4 +3,5 @@ export type ErrorContextType = {
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
     warningMessage: string
     setWarningMessage: React.Dispatch<React.SetStateAction<string>>;
+    clearErrorMessages: () => void
 };

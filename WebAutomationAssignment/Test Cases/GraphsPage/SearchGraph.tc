@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
    <description></description>
-   <name>CreateGraph1</name>
+   <name>SearchGraph</name>
    <tag></tag>
    <comment></comment>
    <origin>WEB_RECORDER</origin>
    <recordOption>OTHER</recordOption>
-   <testCaseGuid>45e4dc82-1969-4ff5-9abb-45134f3efae4</testCaseGuid>
+   <testCaseGuid>b62e7e8d-7b8a-465a-bee7-79be2e2e7e40</testCaseGuid>
 </TestCaseEntity>

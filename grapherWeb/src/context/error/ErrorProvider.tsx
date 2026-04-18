@@ -6,11 +6,18 @@ export const ErrorProvider = ({ children }: { children: ReactNode }) => {
 
     const [errorMessage, setErrorMessage] = useState<string>("");
     const [warningMessage, setWarningMessage] = useState<string>("")
-    const value={
+
+
+    const clearErrorMessages = () => {
+        setErrorMessage("");
+        setWarningMessage("");
+    }
+    const value = {
         errorMessage,
         setErrorMessage,
         warningMessage,
         setWarningMessage,
+        clearErrorMessages
     }
     return (
         <ErrorContext.Provider value={value}>
