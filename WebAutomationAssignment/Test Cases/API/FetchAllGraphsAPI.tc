@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>FetchAllGraphsAPI</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>15bff872-d394-4f93-9fe2-cf8af84436be</testCaseGuid>
+</TestCaseEntity>

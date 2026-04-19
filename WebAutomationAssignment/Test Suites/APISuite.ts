@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestSuiteEntity>
    <description></description>
-   <name>GraphsPageTests</name>
+   <name>APISuite</name>
    <tag></tag>
    <isRerun>false</isRerun>
    <mailRecipient></mailRecipient>
@@ -10,33 +10,26 @@
    <pageLoadTimeoutDefault>true</pageLoadTimeoutDefault>
    <rerunFailedTestCasesOnly>false</rerunFailedTestCasesOnly>
    <rerunImmediately>true</rerunImmediately>
-   <testSuiteGuid>c6980b2d-a4c0-4370-9295-4083d7ea4592</testSuiteGuid>
+   <testSuiteGuid>f2dec12e-4042-4099-975a-508e19497cac</testSuiteGuid>
    <testCaseLink>
-      <guid>c174b2c1-4f2e-41e8-91b8-18644382c93e</guid>
+      <guid>4a1e2892-3795-49ac-b759-06ba9247488e</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/GraphsPage/CreateGraph</testCaseId>
+      <testCaseId>Test Cases/API/LoginAPI</testCaseId>
       <usingDataBindingAtTestSuiteLevel>false</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>3b4385dc-400c-45c3-97c1-097b43ec1917</guid>
+      <guid>5e820d24-92c8-4c26-a2d9-f68eebc8d25c</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/GraphPage/UpdateGrid</testCaseId>
+      <testCaseId>Test Cases/API/FetchAllGraphsAPI</testCaseId>
       <usingDataBindingAtTestSuiteLevel>false</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
    <testCaseLink>
-      <guid>ea74d562-05d7-4611-90fb-94b8a469776f</guid>
+      <guid>9981c6c1-23e5-44de-a239-c643d0fdccbd</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/GraphsPage/SearchGraph</testCaseId>
-      <usingDataBindingAtTestSuiteLevel>false</usingDataBindingAtTestSuiteLevel>
-   </testCaseLink>
-   <testCaseLink>
-      <guid>5f53a90f-4e2c-4c47-a2c7-274ca7eb4fa3</guid>
-      <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
-      <testCaseId>Test Cases/GraphsPage/DeleteGraph</testCaseId>
+      <testCaseId>Test Cases/API/DeleteGraphAPI</testCaseId>
       <usingDataBindingAtTestSuiteLevel>false</usingDataBindingAtTestSuiteLevel>
    </testCaseLink>
 </TestSuiteEntity>
