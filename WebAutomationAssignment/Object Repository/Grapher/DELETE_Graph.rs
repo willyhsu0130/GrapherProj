@@ -35,7 +35,7 @@
    <migratedVersion>5.4.1</migratedVersion>
    <path></path>
    <restRequestMethod>DELETE</restRequestMethod>
-   <restUrl>https://api.willyhsu0130.com/v1/grapher/graph/</restUrl>
+   <restUrl>https://api.willyhsu0130.com/v1/grapher/graph/${id}</restUrl>
    <serviceType>RESTful</serviceType>
    <soapBody></soapBody>
    <soapHeader></soapHeader>
@@ -44,6 +44,13 @@
    <soapServiceFunction></soapServiceFunction>
    <socketTimeout>-1</socketTimeout>
    <useServiceInfoFromWsdl>true</useServiceInfoFromWsdl>
+   <variables>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>8f27463c-86f6-4ccf-bc1d-decd6db51f76</id>
+      <masked>false</masked>
+      <name>id</name>
+   </variables>
    <verificationScript>import static org.assertj.core.api.Assertions.*
 
 import com.kms.katalon.core.testobject.RequestObject
